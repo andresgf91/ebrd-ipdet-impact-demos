@@ -157,6 +157,42 @@ footer { margin-top: 1.5rem; }
   color: var(--muted);
   white-space: pre-wrap;
 }
+.toolbar {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.95rem 1.15rem;
+  margin-bottom: 1.25rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.toolbar p { margin: 0 0 0.55rem; }
+.toolbar p:last-child { margin-bottom: 0; }
+.toolbar form { display: inline; }
+.toolbar button,
+.toolbar a.quiet {
+  font: inherit;
+  font-size: 0.88rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 0.4rem;
+}
+.toolbar button:hover,
+.toolbar a.quiet:hover {
+  border-color: #cfc8bc;
+}
+.log {
+  font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: pre-wrap;
+}
 """
 
 
@@ -236,7 +272,19 @@ def write_outputs(
 
     _write_csv(csv_path, rows)
     _write_markdown(md_path, rows, strip, summary, search_log, mode, backend, fallback_reason, generated)
-    _write_html(html_path, rows, strip, summary, search_log, mode, backend, fallback_reason, generated)
+    html_path.write_text(
+        build_html(
+            rows,
+            strip,
+            summary,
+            search_log,
+            mode,
+            backend,
+            fallback_reason,
+            generated,
+        ),
+        encoding="utf-8",
+    )
     log_path.write_text(json.dumps(search_log, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     summary_path.write_text(summary + "\n", encoding="utf-8")
     json_path.write_text(json.dumps(rows, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -335,8 +383,7 @@ def _md_cell(value: Any) -> str:
     return text
 
 
-def _write_html(
-    path: Path,
+def build_html(
     rows: list[dict[str, Any]],
     strip: list[dict[str, Any]],
     summary: str,
@@ -345,7 +392,9 @@ def _write_html(
     backend: str,
     fallback_reason: str | None,
     generated: str,
-) -> None:
+    *,
+    toolbar_html: str = "",
+) -> str:
     max_count = 1
     for bucket in strip:
         max_count = max(max_count, bucket.get("positive", 0), bucket.get("negative", 0), bucket.get("neutral", 0))
@@ -410,6 +459,7 @@ def _write_html(
 </head>
 <body>
   <div class="wrap">
+    {toolbar_html}
     <header>
       <p class="kicker">IPDET Impact London · EBRD teaching demo · {html.escape(generated)} · {html.escape(mode)} / {html.escape(backend)}</p>
       <h1>Montenegro RES Law and the first solar auction</h1>
@@ -467,7 +517,29 @@ def _write_html(
 </body>
 </html>
 """
-    path.write_text(page, encoding="utf-8")
+    return page
+
+
+def html_from_result(
+    result: dict[str, Any],
+    *,
+    toolbar_html: str = "",
+) -> str:
+    rows = result["rows"]
+    summary = two_line_summary(rows, mode=result["mode"])
+    strip = tone_by_month(rows)
+    generated = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    return build_html(
+        rows,
+        strip,
+        summary,
+        result["log"],
+        result["mode"],
+        result["backend"],
+        result.get("fallback"),
+        generated,
+        toolbar_html=toolbar_html,
+    )
 
 
 def _split_summary(summary: str) -> list[str]:

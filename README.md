@@ -23,7 +23,17 @@ python -m montenegro_res_news --sample    # always works offline
 
 Default `python -m montenegro_res_news` tries a **live** web search, then falls back to the checked-in sample if the live harvest is thin or fails. It does **not** invent articles.
 
-See the demo README for API keys and the HTML handout.
+See the demo README for API keys, the HTML handout, and **Railway** deploy (the web app lives in that folder; `railway.toml` / `Procfile` at the **repository root** start it).
+
+Local web (same cream handout as the sample):
+
+```bash
+cd demos/montenegro-res-news
+python -m pip install -r requirements.txt
+python -m uvicorn montenegro_res_news.web:app --host 127.0.0.1 --port 8000
+```
+
+Then open http://127.0.0.1:8000/ . Live search on the hosted page runs only if a Tavily, Brave, or NewsAPI key is set.
 
 ## How to add a later demo
 

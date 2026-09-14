@@ -7,11 +7,9 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from montenegro_res_news.analyze import analyze_hit
-from montenegro_res_news.mandate import QUALITY_MIN_ARTICLES, live_window_start
-from montenegro_res_news.paths import DEMO_ROOT, load_sample
+from montenegro_res_news.paths import DEMO_ROOT
 from montenegro_res_news.report import write_outputs
-from montenegro_res_news.search import search_live
+from montenegro_res_news.run import run_sample, try_live
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -46,104 +44,32 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     if args.sample:
-        rows, log = load_sample()
-        backend = "sample"
-        fallback = (
-            "Using the checked-in pre-run compiled from published news and official pages "
-            "(frozen 14 September 2026). No live web search was performed."
-        )
-        mode_name = "sample"
+        result = run_sample()
     else:
-        rows, log, backend, fallback, mode_name = _try_live(force_live=args.live)
-
-    rows = sorted(
-        rows,
-        key=lambda r: (str(r.get("date") or "not found") == "not found", str(r.get("date") or "")),
-    )
+        result = try_live(force_live=args.live)
 
     paths = write_outputs(
-        rows,
-        log,
+        result["rows"],
+        result["log"],
         args.outdir,
-        mode=mode_name,
-        backend=backend,
-        fallback_reason=fallback,
+        mode=result["mode"],
+        backend=result["backend"],
+        fallback_reason=result["fallback"],
     )
     if args.write_sample:
         from montenegro_res_news.paths import SAMPLE_DIR
 
         write_outputs(
-            rows,
-            log,
+            result["rows"],
+            result["log"],
             SAMPLE_DIR,
-            mode=mode_name,
-            backend=backend,
-            fallback_reason=fallback,
+            mode=result["mode"],
+            backend=result["backend"],
+            fallback_reason=result["fallback"],
         )
 
-    _print_console(rows, paths, mode_name, backend, fallback)
+    _print_console(result["rows"], paths, result["mode"], result["backend"], result["fallback"])
     return 0
-
-
-def _try_live(*, force_live: bool) -> tuple[list[dict[str, Any]], list[dict[str, Any]], str, str | None, str]:
-    try:
-        hits, log, backend = search_live()
-    except Exception as exc:  # noqa: BLE001
-        if force_live:
-            raise
-        rows, sample_log = load_sample()
-        reason = f"Live search failed ({exc}). Falling back to the checked-in sample; no articles were invented."
-        sample_log = list(sample_log) + [
-            {
-                "timestamp": "not found",
-                "backend": "fallback",
-                "query": "live search",
-                "status": "error",
-                "result_count": 0,
-                "error": str(exc),
-                "notes": reason,
-            }
-        ]
-        return rows, sample_log, "sample", reason, "sample"
-
-    rows = [analyze_hit(hit) for hit in hits]
-    # Unrelated hits have quote = not found; do not keep them as fake coverage.
-    rows = [r for r in rows if r.get("quote") != "not found"]
-    rows = _drop_outside_window(rows)
-
-    if force_live:
-        return rows, log, backend, None, "live"
-
-    if len(rows) < QUALITY_MIN_ARTICLES:
-        sample_rows, sample_log = load_sample()
-        reason = (
-            f"Live backend `{backend}` returned {len(rows)} usable news/official rows "
-            f"(target ≥ {QUALITY_MIN_ARTICLES}). Using the checked-in sample instead of padding with invented coverage."
-        )
-        combined_log = list(log) + list(sample_log) + [
-            {
-                "timestamp": "not found",
-                "backend": "fallback",
-                "query": "quality threshold",
-                "status": "ok",
-                "result_count": len(sample_rows),
-                "error": None,
-                "notes": reason,
-            }
-        ]
-        return sample_rows, combined_log, "sample", reason, "sample"
-
-    return rows, log, backend, None, "live"
-
-
-def _drop_outside_window(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    start = live_window_start().isoformat()
-    kept: list[dict[str, Any]] = []
-    for row in rows:
-        value = str(row.get("date") or "not found")
-        if value == "not found" or value >= start:
-            kept.append(row)
-    return kept
 
 
 def _print_console(

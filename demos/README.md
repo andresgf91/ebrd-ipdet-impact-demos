@@ -25,6 +25,7 @@ Keep demos **self-contained**. Shared ideas belong in this file and the root REA
 4. If the live path needs a key, fail **gracefully** to the sample. Do not invent rows, quotes, or sources.
 5. Link the new demo from the root `README.md`.
 6. Visuals (HTML reports, charts, notebooks): clean workshop look — white or light neutrals, readable tables, quiet colour. Not neon, not “terminal hacker”, not a marketing landing page.
+7. If the demo is meant to be hosted (e.g. Railway), keep a thin web wrapper in the demo folder and put deploy config at the **repo root** unless the service Root Directory is the demo itself.
 
 ## Shared teaching rules (from the Montenegro mandate)
 

@@ -49,7 +49,7 @@ Optional keys (copy `.env.example` — or export in the shell). None are require
 python -m montenegro_res_news --sample
 ```
 
-Opens nothing in a browser by itself. Open `output/report.html` (quiet paper-style handout) or `output/report.md`.
+Writes `output/report.html` (quiet paper-style handout) and `output/report.md`. The CLI does not start a server.
 
 **Default (try live, then sample):**
 
@@ -62,6 +62,50 @@ python -m montenegro_res_news
 ```bash
 python -m montenegro_res_news --live --outdir ./output
 ```
+
+## Local web (classroom URL)
+
+Same HTML as the sample, served so you can share a link (and deploy to Railway):
+
+```bash
+python -m pip install -r requirements.txt
+python -m uvicorn montenegro_res_news.web:app --host 127.0.0.1 --port 8000
+# same thing, reads PORT (default 8000):
+# PORT=8000 python -m montenegro_res_news.web
+```
+
+Open http://127.0.0.1:8000/ — sample table, tone-by-month strip, and two-line summary. `GET /health` is the Railway health check.
+
+**Try live search** on that page only runs if `TAVILY_API_KEY`, `BRAVE_API_KEY`, or `NEWSAPI_KEY` is set. If none are set, the page stays on the sample and says so. It does not invent articles. DuckDuckGo is used by the CLI when no key is present; the web app does not call it automatically (Railway IPs are often blocked).
+
+## Railway
+
+Canonical config is at the **repository root** (this is a course-demos repo; the start command then `cd`s into this folder):
+
+| File | Role |
+| --- | --- |
+| [`railway.toml`](../../railway.toml) | Nixpacks + start command + `/health` |
+| [`Procfile`](../../Procfile) | `web:` process, listens on `$PORT` |
+| [`requirements.txt`](../../requirements.txt) | `-r demos/montenegro-res-news/requirements.txt` |
+| [`Procfile`](Procfile) / [`railway.toml`](railway.toml) here | Use these if you set the Railway **Root Directory** to `demos/montenegro-res-news` |
+
+**Deploy from GitHub (typical):**
+
+1. [New project](https://railway.com/new) → Deploy from GitHub repo `ebrd-ipdet-impact-demos`.
+2. Leave the root as the repository root so `railway.toml` applies. Do **not** invent a start command unless you override the file.
+3. Railway injects `PORT`. Optional variables: `TAVILY_API_KEY`, `BRAVE_API_KEY`, `NEWSAPI_KEY` (live button); `OPENAI_API_KEY` (optional live labels).
+4. Generate a public URL. `/` is the sample handout; `/health` should return `{"status":"ok",...}`.
+
+**CLI deploy** (from a clone of this repo):
+
+```bash
+npm i -g @railway/cli   # or see https://docs.railway.com/guides/cli
+railway login
+railway init            # link this repo
+railway up
+```
+
+If you prefer the service root to be this demo folder, set **Root Directory** to `demos/montenegro-res-news` in the Railway service settings. Then this folder’s `Procfile` and `requirements.txt` are enough; the start command is `python -m montenegro_res_news.web` (listens on `$PORT`).
 
 ## What “good” output looks like
 
