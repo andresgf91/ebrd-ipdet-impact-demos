@@ -1,11 +1,11 @@
 """Thin classroom web app for Railway / local uvicorn.
 
-Serves the evaluation-brief HTML. Live search runs only when an API key is set.
+GET / plays the checked-in sample (no API key). POST /live searches only
+when a key is set, and otherwise stays on that sample.
 """
 
 from __future__ import annotations
 
-import html as html_lib
 import os
 
 from fastapi import FastAPI
@@ -27,39 +27,12 @@ app = FastAPI(
 )
 
 
-def _toolbar(*, keys: bool, notice: str | None = None) -> str:
-    backends = ", ".join(configured_search_backends()) or "none"
-    if keys:
-        live_block = (
-            "<p>A search API key is configured "
-            f"({html_lib.escape(backends)}). Live search still uses published news only "
-            "and falls back to the sample rather than inventing rows.</p>"
-            "<form method='post' action='/live'>"
-            "<button type='submit'>Try live search</button>"
-            "</form>"
-            "<a class='quiet' href='/'>Classroom sample</a>"
-        )
-    else:
-        live_block = (
-            f"<p>{html_lib.escape(NO_KEYS_MESSAGE)}</p>"
-            "<form method='post' action='/live'>"
-            "<button type='submit'>Try live search</button>"
-            "</form>"
-            "<a class='quiet' href='/'>Classroom sample</a>"
-        )
-    extra = f"<p><strong>Note.</strong> {html_lib.escape(notice)}</p>" if notice else ""
-    return (
-        "<section class='toolbar'>"
-        "<p>IPDET Impact London · hosted classroom handout (sample by default).</p>"
-        f"{live_block}{extra}"
-        "</section>"
-    )
-
-
 def _page(result: dict, *, notice: str | None = None) -> HTMLResponse:
     body = html_from_result(
         result,
-        toolbar_html=_toolbar(keys=live_api_keys_present(), notice=notice),
+        notice=notice,
+        show_live=True,
+        live_backends=configured_search_backends(),
     )
     return HTMLResponse(body)
 

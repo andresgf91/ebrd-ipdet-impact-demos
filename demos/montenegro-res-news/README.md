@@ -74,7 +74,7 @@ python -m uvicorn montenegro_res_news.web:app --host 127.0.0.1 --port 8000
 # PORT=8000 python -m montenegro_res_news.web
 ```
 
-Open http://127.0.0.1:8000/ — sample table, tone-by-month strip, and two-line summary. `GET /health` is the Railway health check.
+Open http://127.0.0.1:8000/ — the page plays the checked-in sample as an agent loop (goal, tools, plan/reason, action, observation, memory, stop), then leaves the two-line summary, tone-by-month strip, quoted table, and search log on screen. Replay restarts that run. No API key is required. `GET /health` is the Railway health check.
 
 **Try live search** on that page only runs if `TAVILY_API_KEY`, `BRAVE_API_KEY`, or `NEWSAPI_KEY` is set. If none are set, the page stays on the sample and says so. It does not invent articles. DuckDuckGo is used by the CLI when no key is present; the web app does not call it automatically (Railway IPs are often blocked).
 
@@ -123,7 +123,7 @@ The HTML uses a white/cream page, serif headings, muted green/brick/grey for ton
 
 ## Teaching notes
 
-- Walk **search log → table → strip → two-liner**. The log is the audit trail.
+- Let the page play the loop, or click a step: **goal, tools, plan/reason, action, observation, memory, stop**. Then read the summary, the strip, the quoted table, and the log.
 - Point at the JPM row: **date = `not found`** because the page did not print a publish date. That is the constraint working.
 - Tone is about **how the piece receives the reform**, not whether auctions are good policy.
 - Live classification without an LLM will be coarser than the sample. That is a feature: students can disagree with a heuristic using the quote.

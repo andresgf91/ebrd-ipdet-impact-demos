@@ -16,6 +16,17 @@ def test_home_serves_sample_handout(monkeypatch):
     assert "Official Gazette of Montenegro" in html
     assert "Tone by month" in html
     assert "Two-line summary" in html
+    assert "Search log" in html
+    assert "Quoted articles" in html
+    assert "Replay run" in html
+    assert "Try live search" in html
+    assert "no API key" in html
+    assert "No TAVILY_API_KEY" not in html
+    steps = ["goal", "tools", "plan", "action", "observation", "memory", "stop"]
+    positions = [html.index(f"data-step='{step}'") for step in steps]
+    assert positions == sorted(positions)
+    for label in ("Goal", "Tools", "Plan / reason", "Action", "Observation", "Memory", "Stop"):
+        assert label in html
     assert "neon" not in html.lower()
     assert "swagger" not in html.lower()
 
