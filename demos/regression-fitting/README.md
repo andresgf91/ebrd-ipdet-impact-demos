@@ -27,6 +27,7 @@ The captured stdout from 24 September 2026 is in `sample/script_stdout.txt`. If 
 | File | Role |
 | --- | --- |
 | `index.html` | Recordable walkthrough |
+| `copilot.html` | Copilot live result, linked from the walkthrough |
 | `analyze_climate_subloans.py` | The analysis that is typed on screen and that was run |
 | `data/ba_loan_climate_subloans.csv` | Synthetic sub-loans, built to the case totals |
 | `live_demo_prompt.txt` | Original classroom prompt |
