@@ -6,7 +6,7 @@ The page does not call a model. It plays a captured run of `analyze_climate_subl
 
 ## Start a recording
 
-1. Open `index.html` in a browser (double-click, or `open index.html` from this folder).
+1. Open `index.html` in a browser (double-click, or `open index.html` from this folder). `copilot.html` is the Copilot live result, linked from the walkthrough.
 2. Use the window at laptop size. Play, Pause, and Step sit along the bottom.
 3. Press Play and let the four beats run, or Step through them: the mandate, the script being written, the run, then the results.
 4. For a live Copilot take, paste `copilot_live_prompt.txt` and attach `data/ba_loan_climate_subloans.csv`. That file is for the live recording. The page only points at it.
