@@ -1,0 +1,19 @@
+I am evaluating a bank credit line. The attached file is 214 climate sub-loans made under it between 2021 and 2024: loan amount in USD, the type of asset financed, sector, region, borrower size, and the annual GHG reduction in tonnes of CO2 attributed to each loan.
+
+At approval the results framework set a target of 20,469 tCO2/yr. The portfolio reported 230,617 tCO2/yr, 11.3 times the target.
+
+Do this in three visible steps, in order. Do not skip ahead.
+
+1. Write a Python file named analyze_climate_subloans.py in the editor. Do not only paste code in chat. The room needs to see the file being written.
+2. Run that file in the terminal and leave the output visible.
+3. Then explain the results in chat.
+
+The analysis must explain where that GHG reduction actually came from. Fit a regression, say what drives the outcome, and report how much of the total is concentrated in how few deals.
+
+In the script:
+- Fit a naive model of GHG on loan amount only.
+- Then fit a better model that takes loan size seriously and accounts for what the money bought (asset type, and borrower size and region if they earn their place).
+- State the specification you chose and why you chose it over the naive one.
+- Report concentration: how few deals carry how much of the total GHG reduction.
+
+Show the code, state the specification and why, and tell me what this analysis cannot tell me. That last part is required. Every row is a loan that was made. Say plainly whether any specification in this file can show that the credit line caused the reductions.

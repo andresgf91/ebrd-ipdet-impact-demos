@@ -1,0 +1,14 @@
+PROMPT TO PASTE LIVE  (attach ba_loan_climate_subloans.csv)
+
+I am evaluating a bank credit line. The attached file is 214 climate sub-loans
+made under it between 2021 and 2024: loan amount in USD, the type of asset
+financed, sector, region, borrower size, and the annual GHG reduction in tonnes
+of CO2 attributed to each loan.
+
+At approval the results framework set a target of 20,469 tCO2/yr. The portfolio
+reported 230,617 tCO2/yr, 11.3 times the target.
+
+Write and run the analysis that explains where that GHG reduction actually came
+from. Fit a regression, tell me what drives the outcome, and report how much of
+the total is concentrated in how few deals. Show me the code, state the
+specification you chose and why, and tell me what this analysis cannot tell me.

@@ -1,0 +1,215 @@
+loan_id,year,asset_type,sector,region,borrower_size,loan_usd,ghg_tco2_yr
+CL-0001,2024,Efficient boiler,Retail & services,Urban,Micro,485175,185.6
+CL-0002,2023,Solar PV,Transport,Rural,Micro,3909225,2511.0
+CL-0003,2023,Industrial process,Agribusiness,Rural,Medium,2504302,6881.0
+CL-0004,2023,Efficient boiler,Manufacturing,Urban,Medium,146328,115.5
+CL-0005,2021,Cold chain,Transport,Urban,Small,341804,143.5
+CL-0006,2022,Industrial process,Agribusiness,Urban,Micro,1672382,3312.3
+CL-0007,2023,Solar PV,Transport,Urban,Micro,1254192,1088.1
+CL-0008,2021,EDGE green building,Agribusiness,Rural,Medium,1363766,429.0
+CL-0009,2024,Solar PV,Manufacturing,Rural,Small,605995,542.9
+CL-0010,2023,Solar PV,Agribusiness,Rural,Small,3398276,3984.2
+CL-0011,2023,EDGE green building,Transport,Urban,Medium,4822304,1543.1
+CL-0012,2022,Cold chain,Real estate,Urban,Small,662710,292.1
+CL-0013,2021,Efficient boiler,Real estate,Rural,Small,516185,175.3
+CL-0014,2024,Fleet renewal,Agribusiness,Urban,Small,428249,98.8
+CL-0015,2024,EDGE green building,Real estate,Urban,Medium,3637969,771.2
+CL-0016,2023,Solar PV,Real estate,Rural,Micro,771820,466.0
+CL-0017,2022,Solar PV,Manufacturing,Urban,Micro,1261350,1166.1
+CL-0018,2023,Cold chain,Retail & services,Urban,Small,973887,418.5
+CL-0019,2024,Fleet renewal,Transport,Rural,Medium,429768,121.5
+CL-0020,2024,Fleet renewal,Manufacturing,Urban,Micro,586899,132.4
+CL-0021,2023,Solar PV,Real estate,Urban,Small,1314791,1506.5
+CL-0022,2024,Solar PV,Retail & services,Urban,Micro,448645,364.7
+CL-0023,2021,Cold chain,Manufacturing,Urban,Small,905528,273.4
+CL-0024,2023,EDGE green building,Real estate,Urban,Small,3011031,762.5
+CL-0025,2024,Cold chain,Agribusiness,Rural,Micro,356386,177.6
+CL-0026,2022,Solar PV,Real estate,Rural,Micro,6226520,5664.5
+CL-0027,2022,Efficient boiler,Transport,Urban,Small,1173380,613.7
+CL-0028,2023,Cold chain,Agribusiness,Urban,Micro,555650,102.4
+CL-0029,2022,Solar PV,Retail & services,Rural,Micro,599980,690.3
+CL-0030,2022,Cold chain,Agribusiness,Urban,Small,531916,205.5
+CL-0031,2023,Fleet renewal,Agribusiness,Urban,Micro,184419,51.8
+CL-0032,2023,Efficient boiler,Retail & services,Rural,Medium,1342242,996.2
+CL-0033,2024,EDGE green building,Agribusiness,Rural,Micro,706964,134.7
+CL-0034,2023,Efficient boiler,Manufacturing,Urban,Small,1098274,382.6
+CL-0035,2021,Fleet renewal,Agribusiness,Urban,Small,353495,87.3
+CL-0036,2022,Solar PV,Agribusiness,Urban,Medium,258807,255.8
+CL-0037,2021,EDGE green building,Real estate,Urban,Micro,1675279,215.8
+CL-0038,2022,Efficient boiler,Real estate,Urban,Micro,209680,191.5
+CL-0039,2022,Solar PV,Manufacturing,Urban,Medium,615678,782.3
+CL-0040,2022,Cold chain,Manufacturing,Urban,Medium,193839,111.6
+CL-0041,2024,Efficient boiler,Manufacturing,Urban,Small,252431,170.7
+CL-0042,2021,Fleet renewal,Manufacturing,Urban,Micro,941468,266.9
+CL-0043,2024,Solar PV,Retail & services,Urban,Small,1007579,532.7
+CL-0044,2022,Solar PV,Real estate,Urban,Small,674040,791.0
+CL-0045,2022,Fleet renewal,Real estate,Urban,Medium,98461,27.4
+CL-0046,2024,Efficient boiler,Real estate,Urban,Medium,423685,197.3
+CL-0047,2023,Fleet renewal,Real estate,Urban,Medium,1428916,349.1
+CL-0048,2023,Efficient boiler,Agribusiness,Urban,Small,260746,122.6
+CL-0049,2023,Efficient boiler,Real estate,Urban,Small,344179,193.4
+CL-0050,2022,Solar PV,Manufacturing,Urban,Micro,310629,165.2
+CL-0051,2023,Fleet renewal,Manufacturing,Urban,Small,586492,126.4
+CL-0052,2022,Efficient boiler,Transport,Urban,Micro,154407,51.3
+CL-0053,2023,Cold chain,Real estate,Urban,Micro,347669,131.8
+CL-0054,2024,Industrial process,Transport,Urban,Micro,2431034,5880.7
+CL-0055,2021,EDGE green building,Retail & services,Urban,Medium,1444305,424.6
+CL-0056,2023,Efficient boiler,Manufacturing,Urban,Small,482904,132.8
+CL-0057,2021,Solar PV,Manufacturing,Urban,Small,864198,921.3
+CL-0058,2023,Fleet renewal,Retail & services,Rural,Medium,238210,84.7
+CL-0059,2022,EDGE green building,Real estate,Urban,Small,2513565,658.5
+CL-0060,2023,Solar PV,Manufacturing,Rural,Medium,921449,1240.1
+CL-0061,2022,Industrial process,Transport,Urban,Small,843982,1821.3
+CL-0062,2022,Solar PV,Retail & services,Urban,Medium,420970,257.0
+CL-0063,2021,Efficient boiler,Real estate,Urban,Small,533573,139.0
+CL-0064,2022,Industrial process,Real estate,Urban,Medium,1818469,3834.9
+CL-0065,2024,Cold chain,Agribusiness,Rural,Medium,19825,11.4
+CL-0066,2022,EDGE green building,Real estate,Urban,Medium,5873301,1464.1
+CL-0067,2021,EDGE green building,Real estate,Urban,Micro,2057043,380.7
+CL-0068,2024,Solar PV,Manufacturing,Rural,Small,1271178,802.2
+CL-0069,2023,Solar PV,Agribusiness,Rural,Small,1010173,683.8
+CL-0070,2022,Solar PV,Real estate,Urban,Small,1518259,1028.6
+CL-0071,2022,Cold chain,Transport,Urban,Small,184645,122.4
+CL-0072,2021,Fleet renewal,Real estate,Urban,Micro,371490,83.4
+CL-0073,2021,Fleet renewal,Transport,Urban,Small,114195,35.1
+CL-0074,2021,Efficient boiler,Manufacturing,Urban,Small,1076877,367.6
+CL-0075,2023,EDGE green building,Real estate,Urban,Small,2362382,454.0
+CL-0076,2023,Cold chain,Transport,Rural,Medium,99174,35.2
+CL-0077,2022,Solar PV,Real estate,Urban,Medium,1145414,1075.5
+CL-0078,2022,EDGE green building,Real estate,Urban,Medium,736810,229.6
+CL-0079,2023,EDGE green building,Agribusiness,Rural,Micro,1547858,334.7
+CL-0080,2023,Efficient boiler,Manufacturing,Urban,Micro,424172,191.3
+CL-0081,2022,Solar PV,Real estate,Rural,Micro,2057715,1576.3
+CL-0082,2022,Solar PV,Retail & services,Rural,Small,450173,579.8
+CL-0083,2023,Fleet renewal,Retail & services,Rural,Small,376354,152.8
+CL-0084,2023,Fleet renewal,Retail & services,Rural,Micro,526759,93.4
+CL-0085,2022,Industrial process,Retail & services,Urban,Small,4728968,10379.2
+CL-0086,2024,Solar PV,Transport,Urban,Small,1521350,1337.7
+CL-0087,2023,EDGE green building,Manufacturing,Urban,Small,3106894,929.3
+CL-0088,2023,Solar PV,Transport,Rural,Small,1079738,1294.2
+CL-0089,2024,Industrial process,Real estate,Rural,Small,4468778,8267.8
+CL-0090,2023,Efficient boiler,Manufacturing,Urban,Micro,298770,153.8
+CL-0091,2024,Efficient boiler,Transport,Urban,Small,552349,252.1
+CL-0092,2023,EDGE green building,Retail & services,Urban,Small,524387,125.6
+CL-0093,2022,EDGE green building,Real estate,Urban,Medium,3429628,485.0
+CL-0094,2021,Industrial process,Manufacturing,Urban,Medium,4757641,11138.9
+CL-0095,2023,Solar PV,Manufacturing,Urban,Small,2093630,1855.5
+CL-0096,2023,Efficient boiler,Manufacturing,Rural,Medium,476745,444.6
+CL-0097,2024,Fleet renewal,Real estate,Urban,Small,277921,66.8
+CL-0098,2021,Solar PV,Transport,Urban,Micro,1151243,657.5
+CL-0099,2022,Solar PV,Real estate,Rural,Micro,4717863,3378.2
+CL-0100,2021,Solar PV,Retail & services,Rural,Medium,1393446,1452.1
+CL-0101,2024,EDGE green building,Retail & services,Urban,Medium,639178,229.4
+CL-0102,2022,Efficient boiler,Transport,Rural,Medium,437292,216.2
+CL-0103,2024,Efficient boiler,Real estate,Rural,Medium,216031,97.0
+CL-0104,2022,Efficient boiler,Manufacturing,Rural,Small,245547,151.0
+CL-0105,2024,Solar PV,Real estate,Urban,Micro,708118,1064.7
+CL-0106,2023,Solar PV,Real estate,Urban,Medium,3415965,2827.1
+CL-0107,2021,Solar PV,Manufacturing,Urban,Medium,870427,1075.9
+CL-0108,2021,Efficient boiler,Transport,Urban,Micro,425047,214.8
+CL-0109,2021,EDGE green building,Manufacturing,Urban,Micro,3160267,705.0
+CL-0110,2023,Solar PV,Real estate,Urban,Small,1673084,1236.0
+CL-0111,2023,Solar PV,Agribusiness,Urban,Medium,1255686,1481.4
+CL-0112,2023,Solar PV,Real estate,Rural,Micro,4194126,2034.3
+CL-0113,2024,Solar PV,Manufacturing,Rural,Small,2467444,3727.2
+CL-0114,2023,Solar PV,Manufacturing,Urban,Medium,1197380,1106.3
+CL-0115,2021,Cold chain,Retail & services,Urban,Small,201420,52.0
+CL-0116,2024,Efficient boiler,Retail & services,Rural,Medium,962740,448.8
+CL-0117,2021,Cold chain,Manufacturing,Urban,Small,914530,375.7
+CL-0118,2024,Cold chain,Transport,Urban,Micro,1021622,548.7
+CL-0119,2021,Solar PV,Agribusiness,Urban,Micro,1034367,509.6
+CL-0120,2021,Efficient boiler,Manufacturing,Urban,Small,302126,144.5
+CL-0121,2021,Fleet renewal,Retail & services,Rural,Medium,152926,63.1
+CL-0122,2024,Cold chain,Agribusiness,Rural,Medium,441594,229.1
+CL-0123,2022,Solar PV,Manufacturing,Urban,Micro,657461,365.8
+CL-0124,2022,Solar PV,Agribusiness,Urban,Small,2786293,3275.3
+CL-0125,2023,Efficient boiler,Transport,Urban,Micro,388174,147.8
+CL-0126,2021,Cold chain,Agribusiness,Rural,Small,127721,48.5
+CL-0127,2021,Solar PV,Real estate,Rural,Micro,4965098,3410.9
+CL-0128,2021,Solar PV,Agribusiness,Urban,Micro,383436,406.5
+CL-0129,2024,Solar PV,Retail & services,Urban,Micro,353371,260.6
+CL-0130,2022,Solar PV,Manufacturing,Urban,Small,503504,564.0
+CL-0131,2023,Cold chain,Real estate,Urban,Micro,693791,260.5
+CL-0132,2023,Industrial process,Transport,Urban,Small,6693735,19524.8
+CL-0133,2021,Fleet renewal,Real estate,Urban,Small,486524,171.7
+CL-0134,2022,EDGE green building,Real estate,Rural,Medium,3803477,844.2
+CL-0135,2021,Efficient boiler,Transport,Urban,Small,391991,123.9
+CL-0136,2024,Solar PV,Retail & services,Urban,Medium,1983598,1198.8
+CL-0137,2022,Solar PV,Real estate,Rural,Small,908686,488.0
+CL-0138,2023,Fleet renewal,Agribusiness,Rural,Medium,822026,365.4
+CL-0139,2021,EDGE green building,Retail & services,Urban,Medium,1613869,251.9
+CL-0140,2023,EDGE green building,Manufacturing,Urban,Small,3066005,561.8
+CL-0141,2021,Solar PV,Retail & services,Rural,Small,423128,246.7
+CL-0142,2022,Solar PV,Manufacturing,Rural,Small,1261275,899.1
+CL-0143,2023,Efficient boiler,Agribusiness,Urban,Micro,441286,124.7
+CL-0144,2021,Efficient boiler,Manufacturing,Rural,Small,152002,61.7
+CL-0145,2023,Efficient boiler,Real estate,Rural,Medium,225734,102.2
+CL-0146,2021,Industrial process,Real estate,Rural,Micro,4245718,8286.5
+CL-0147,2023,Fleet renewal,Real estate,Urban,Small,1144366,341.5
+CL-0148,2023,Efficient boiler,Retail & services,Rural,Small,367351,233.0
+CL-0149,2021,Efficient boiler,Real estate,Urban,Micro,1414243,368.7
+CL-0150,2024,Efficient boiler,Manufacturing,Rural,Small,248677,104.5
+CL-0151,2024,Industrial process,Agribusiness,Urban,Small,1933430,5454.5
+CL-0152,2024,Cold chain,Retail & services,Urban,Micro,110748,31.6
+CL-0153,2021,Solar PV,Transport,Urban,Micro,1023551,892.2
+CL-0154,2022,Cold chain,Retail & services,Rural,Small,347668,226.8
+CL-0155,2024,Fleet renewal,Transport,Urban,Medium,216593,81.1
+CL-0156,2023,Solar PV,Transport,Urban,Small,1453791,1215.8
+CL-0157,2023,Efficient boiler,Manufacturing,Urban,Micro,213116,86.6
+CL-0158,2022,Solar PV,Transport,Rural,Small,1839048,1275.8
+CL-0159,2021,Solar PV,Agribusiness,Rural,Small,734102,394.1
+CL-0160,2024,Efficient boiler,Real estate,Urban,Micro,518807,133.6
+CL-0161,2023,Fleet renewal,Retail & services,Rural,Small,206035,65.2
+CL-0162,2021,Cold chain,Agribusiness,Rural,Micro,1078629,350.5
+CL-0163,2023,EDGE green building,Transport,Urban,Micro,3160370,610.8
+CL-0164,2023,Industrial process,Agribusiness,Urban,Micro,674060,1655.6
+CL-0165,2021,Solar PV,Transport,Rural,Micro,911743,622.4
+CL-0166,2021,Cold chain,Real estate,Rural,Medium,586730,195.7
+CL-0167,2023,Solar PV,Agribusiness,Rural,Medium,5406150,5182.1
+CL-0168,2023,Industrial process,Real estate,Rural,Micro,3276331,7188.7
+CL-0169,2024,EDGE green building,Real estate,Urban,Micro,4122144,843.6
+CL-0170,2022,EDGE green building,Manufacturing,Urban,Medium,1708301,359.2
+CL-0171,2023,Efficient boiler,Retail & services,Urban,Micro,1091973,677.6
+CL-0172,2022,Efficient boiler,Agribusiness,Urban,Small,123833,74.0
+CL-0173,2022,Efficient boiler,Real estate,Urban,Medium,357170,213.3
+CL-0174,2023,Fleet renewal,Retail & services,Rural,Small,473443,146.4
+CL-0175,2024,EDGE green building,Agribusiness,Rural,Micro,1617241,409.9
+CL-0176,2021,Solar PV,Transport,Urban,Micro,1695406,1539.6
+CL-0177,2021,Cold chain,Agribusiness,Urban,Small,128448,41.0
+CL-0178,2022,EDGE green building,Manufacturing,Rural,Micro,3695989,602.9
+CL-0179,2024,Solar PV,Manufacturing,Urban,Medium,898897,930.9
+CL-0180,2023,Cold chain,Manufacturing,Rural,Small,189095,85.9
+CL-0181,2022,Cold chain,Agribusiness,Urban,Small,189384,43.3
+CL-0182,2023,Solar PV,Real estate,Urban,Medium,447027,378.8
+CL-0183,2021,Solar PV,Transport,Rural,Micro,725134,457.7
+CL-0184,2022,Fleet renewal,Transport,Urban,Small,579147,154.2
+CL-0185,2022,EDGE green building,Manufacturing,Urban,Medium,5717246,1080.0
+CL-0186,2024,Cold chain,Manufacturing,Rural,Micro,196078,54.8
+CL-0187,2023,Industrial process,Retail & services,Rural,Small,1526689,2492.7
+CL-0188,2021,Solar PV,Real estate,Urban,Medium,858475,1390.3
+CL-0189,2023,Solar PV,Retail & services,Urban,Medium,344723,296.2
+CL-0190,2023,EDGE green building,Agribusiness,Urban,Micro,3173302,630.3
+CL-0191,2024,Efficient boiler,Manufacturing,Urban,Medium,210446,137.6
+CL-0192,2022,Fleet renewal,Retail & services,Urban,Small,101920,37.7
+CL-0193,2024,Efficient boiler,Agribusiness,Urban,Small,401159,237.0
+CL-0194,2021,Cold chain,Manufacturing,Urban,Small,521217,177.8
+CL-0195,2022,Solar PV,Transport,Urban,Medium,1395564,1936.1
+CL-0196,2024,Efficient boiler,Manufacturing,Rural,Medium,804480,614.7
+CL-0197,2023,Solar PV,Transport,Urban,Micro,1122640,1254.1
+CL-0198,2021,EDGE green building,Agribusiness,Urban,Micro,2664995,359.7
+CL-0199,2021,Solar PV,Agribusiness,Rural,Small,1167738,649.7
+CL-0200,2023,EDGE green building,Manufacturing,Rural,Small,2686644,409.2
+CL-0201,2023,EDGE green building,Manufacturing,Urban,Small,2662195,390.0
+CL-0202,2021,Fleet renewal,Manufacturing,Urban,Micro,643290,122.3
+CL-0203,2023,Solar PV,Retail & services,Urban,Small,167725,96.2
+CL-0204,2022,Efficient boiler,Agribusiness,Rural,Micro,186728,120.6
+CL-0205,2023,Solar PV,Real estate,Urban,Small,289375,296.3
+CL-0206,2023,Efficient boiler,Manufacturing,Rural,Small,534147,296.1
+CL-0207,2021,Industrial process,Manufacturing,Urban,Small,3467338,10286.3
+CL-0208,2023,Cold chain,Agribusiness,Urban,Micro,364197,155.5
+CL-0209,2023,EDGE green building,Agribusiness,Rural,Micro,846176,88.0
+CL-0210,2021,Cold chain,Retail & services,Urban,Medium,796709,314.0
+CL-0211,2021,Industrial process,Agribusiness,Urban,Small,994691,1898.1
+CL-0212,2023,Solar PV,Agribusiness,Urban,Micro,1265044,1034.1
+CL-0213,2022,Solar PV,Real estate,Urban,Small,1374111,857.7
+CL-0214,2022,Efficient boiler,Transport,Urban,Medium,610365,316.7
