@@ -179,7 +179,7 @@ main { min-height: 68vh; }
 }
 .setup {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: 0.85rem 1.2rem;
 }
 .setup .panel + .panel {
@@ -215,6 +215,7 @@ h2 {
   margin: 0 0 0.55rem;
 }
 .summary .lead:last-child { margin-bottom: 0; }
+html.js-run footer { display: none; }
 html.js-run .panel { display: none; }
 html.js-run .panel.shown { display: block; animation: rise 0.35s ease; }
 html.js-run .setup:not(:has(.panel.shown)) { display: none; }
