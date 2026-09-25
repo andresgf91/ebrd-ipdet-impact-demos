@@ -1,0 +1,105 @@
+[
+  {
+    "timestamp": "2026-09-14T00:00:00+00:00",
+    "backend": "manual-pre-run",
+    "query": "Montenegro Renewable Energy Sources Law solar auction 2025 2026",
+    "date_from": "2024-08-01",
+    "date_to": "2026-09-14",
+    "status": "ok",
+    "result_count": 5,
+    "error": null,
+    "notes": "Classroom sample compiled from published news and official pages. Not social media. Dates taken from the page (or marked not found)."
+  },
+  {
+    "timestamp": "2026-09-14T00:00:00+00:00",
+    "backend": "manual-pre-run",
+    "query": "Montenegro RES Law first solar auction news coverage",
+    "date_from": "2024-08-01",
+    "date_to": "2026-09-14",
+    "status": "ok",
+    "result_count": 5,
+    "error": null
+  },
+  {
+    "timestamp": "2026-09-14T00:00:00+00:00",
+    "backend": "manual-pre-run",
+    "query": "Montenegro solar auction 2025 investors grid coal phase-out",
+    "date_from": "2024-08-01",
+    "date_to": "2026-09-14",
+    "status": "ok",
+    "result_count": 5,
+    "error": null
+  },
+  {
+    "timestamp": "2026-09-14T00:00:00+00:00",
+    "backend": "manual-pre-run",
+    "query": "Montenegro Law on the Use of Energy from Renewable Sources August 2024",
+    "date_from": "2024-08-01",
+    "date_to": "2026-09-14",
+    "status": "ok",
+    "result_count": 5,
+    "error": null
+  },
+  {
+    "timestamp": "2026-09-14T00:00:00+00:00",
+    "backend": "manual-pre-run",
+    "query": "site:gov.me renewable energy auction solar 2025 Montenegro",
+    "date_from": "2024-08-01",
+    "date_to": "2026-09-14",
+    "status": "ok",
+    "result_count": 5,
+    "error": null,
+    "notes": "Official PDFs on wapi.gov.me corroborate the July 2025 call and later government information; the sample table prefers citable HTML news/official pages."
+  },
+  {
+    "timestamp": "2026-09-14T00:00:00+00:00",
+    "backend": "manual-pre-run",
+    "query": "Montenegro three-year incentive plan 2026-2028 solar wind auction",
+    "date_from": "2024-08-01",
+    "date_to": "2026-09-14",
+    "status": "ok",
+    "result_count": 5,
+    "error": null
+  },
+  {
+    "timestamp": "2026-09-14T00:00:00+00:00",
+    "backend": "manual-pre-run",
+    "query": "Montenegro market premium solar auction 2025 OR 2026",
+    "date_from": "2024-08-01",
+    "date_to": "2026-09-14",
+    "status": "ok",
+    "result_count": 5,
+    "error": null
+  },
+  {
+    "timestamp": "2026-09-14T00:00:00+00:00",
+    "backend": "manual-pre-run",
+    "query": "EBRD supports first renewable energy auction in Montenegro",
+    "date_from": "2024-08-01",
+    "date_to": "2026-09-14",
+    "status": "ok",
+    "result_count": 1,
+    "error": null
+  },
+  {
+    "timestamp": "2026-09-14T00:00:00+00:00",
+    "backend": "manual-pre-run",
+    "query": "Montenegro Energy Community Secretariat Renewable Energy Law 26 August 2024",
+    "date_from": "2024-08-01",
+    "date_to": "2026-09-14",
+    "status": "ok",
+    "result_count": 2,
+    "error": null
+  },
+  {
+    "timestamp": "2026-09-14T00:00:00+00:00",
+    "backend": "filter",
+    "query": "social-media host exclusion",
+    "date_from": null,
+    "date_to": null,
+    "status": "ok",
+    "result_count": 0,
+    "error": null,
+    "notes": "No social URLs retained. Twitter/X, Facebook, LinkedIn, YouTube, Reddit and similar hosts are out of scope."
+  }
+]

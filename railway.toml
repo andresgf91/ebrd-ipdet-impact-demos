@@ -1,0 +1,16 @@
+# Railway deploys the Montenegro RES classroom demo from this repo.
+# Connect the GitHub repo; Nixpacks reads this file at the repository root.
+# The start command then runs inside demos/montenegro-res-news/.
+#
+# Optional dashboard alternative: set the service Root Directory to
+# demos/montenegro-res-news and use the Procfile in that folder.
+
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "cd demos/montenegro-res-news && python -m montenegro_res_news.web"
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5

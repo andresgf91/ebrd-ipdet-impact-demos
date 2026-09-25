@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Montenegro RES Law and first solar auction — media reception</title>
+  <style>
+:root {
+  --paper: #f7f5f1;
+  --card: #ffffff;
+  --ink: #2b2a27;
+  --muted: #6d6860;
+  --line: #e3ddd4;
+  --accent: #3f5c4c;
+  --positive: #3f5c4c;
+  --negative: #8a5348;
+  --neutral: #7a746c;
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  font-size: 17px;
+}
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+}
+.skip:focus {
+  left: 0.75rem;
+  top: 0.75rem;
+  background: var(--card);
+  padding: 0.35rem 0.6rem;
+  z-index: 8;
+}
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.25rem 1.35rem 2.75rem;
+}
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 0.85rem;
+}
+.top-text { flex: 1 1 34rem; min-width: 0; }
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0.15rem 0 0.3rem;
+}
+.kicker, .status {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+.actions form { margin: 0; }
+.actions button,
+.actions a.quiet,
+.filters button {
+  font: inherit;
+  font-size: 0.9rem;
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.38rem 0.72rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+.actions button:hover,
+.actions a.quiet:hover,
+.filters button:hover,
+.loop button:hover { border-color: #cfc8bc; }
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+html.is-settled #skip-run { display: none; }
+.banner {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin: 0 0 0.9rem;
+  font-size: 0.95rem;
+}
+.loop-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  background: var(--paper);
+  margin: 0 0 1rem;
+  padding: 0.45rem 0 0.55rem;
+  border-bottom: 1px solid var(--line);
+}
+.loop {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+}
+.loop button {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  background: var(--card);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.42rem 0.5rem 0.48rem;
+  cursor: pointer;
+}
+.loop .n {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+.loop .name {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.86rem;
+  line-height: 1.25;
+}
+.loop .gloss {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+.loop button.now {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+  color: var(--ink);
+}
+.loop button.done .n { color: var(--accent); }
+html.js-run .loop button:not(.done):not(.now) { opacity: 0.55; }
+main { min-height: 68vh; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.95rem 1.1rem 1.05rem;
+  margin-bottom: 0.85rem;
+}
+.setup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0.85rem 1.2rem;
+}
+.setup .panel + .panel {
+  border-left: 1px solid var(--line);
+  padding-left: 1rem;
+}
+h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 1.28rem;
+  margin: 0 0 0.45rem;
+}
+.setup h2 { font-size: 1.12rem; margin-bottom: 0.35rem; }
+.step-kicker {
+  margin: 0 0 0.15rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.note { color: var(--muted); font-size: 0.88rem; margin: 0.45rem 0 0; }
+.setup p, .card > p { margin: 0.2rem 0 0; }
+.setup ul, .tight {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+}
+.setup li { margin: 0.15rem 0; }
+.summary .lead {
+  max-width: 68ch;
+  font-size: 1.06rem;
+  line-height: 1.45;
+  margin: 0 0 0.55rem;
+}
+.summary .lead:last-child { margin-bottom: 0; }
+html.js-run footer { display: none; }
+html.js-run .panel { display: none; }
+html.js-run .panel.shown { display: block; animation: rise 0.35s ease; }
+html.js-run .setup:not(:has(.panel.shown)) { display: none; }
+.panel { scroll-margin-top: 7rem; }
+.panel.current { box-shadow: inset 3px 0 0 var(--accent); }
+.setup .panel.current { padding-left: 0.7rem; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.strip {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-end;
+  overflow-x: auto;
+  padding: 0.35rem 0 0.15rem;
+}
+.month { min-width: 4.1rem; text-align: center; }
+.month.wide { min-width: 5.8rem; }
+.bars {
+  height: 108px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+}
+.col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.tick {
+  min-height: 0.85rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.tick.positive { color: var(--positive); }
+.tick.negative { color: var(--negative); }
+.tick.neutral { color: var(--neutral); }
+.bar { width: 10px; border-radius: 2px 2px 0 0; }
+.bar.positive { background: var(--positive); }
+.bar.negative { background: var(--negative); }
+.bar.neutral { background: var(--neutral); opacity: 0.8; }
+.month label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.legend { font-size: 0.84rem; color: var(--muted); margin: 0.65rem 0 0; }
+.legend span { margin-right: 0.9rem; }
+.swatch {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 0.28rem;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+.swatch.positive { background: var(--positive); }
+.swatch.negative { background: var(--negative); }
+.swatch.neutral { background: var(--neutral); }
+.filters { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.2rem 0 0.7rem; }
+.filters button.is-on {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+.table-scroll {
+  overflow: auto;
+  max-height: 28rem;
+  border-top: 1px solid var(--line);
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.55rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+th {
+  position: sticky;
+  top: 0;
+  background: var(--card);
+  z-index: 1;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+td:first-child { font-weight: 600; min-width: 8.5rem; }
+td:nth-child(2), td:nth-child(3) { white-space: nowrap; }
+td.quote { overflow-wrap: anywhere; }
+a { color: var(--accent); }
+.tone {
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 0.08rem 0.45rem;
+  border-radius: 999px;
+}
+.tone.positive { color: var(--positive); background: #e7efe9; }
+.tone.negative { color: var(--negative); background: #f6ecea; }
+.tone.neutral { color: var(--neutral); background: #f1efec; }
+.just { color: var(--muted); font-size: 0.8rem; display: block; margin-top: 0.2rem; font-weight: 400; }
+.missing { color: var(--negative); font-weight: 600; }
+.queries { list-style: none; margin: 0.4rem 0 0; padding: 0; max-height: 18rem; overflow: auto; }
+.queries li { padding: 0.45rem 0; border-bottom: 1px solid var(--line); }
+.queries .q { display: block; }
+.queries .meta { display: block; color: var(--muted); font-size: 0.8rem; }
+.queries li.is-error .meta { color: var(--negative); }
+.queries .note { display: block; margin-top: 0.15rem; }
+footer { color: var(--muted); font-size: 0.82rem; margin-top: 1.25rem; }
+footer p { margin: 0.15rem 0; }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+@media (max-width: 860px) {
+  .loop { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .setup { grid-template-columns: 1fr; }
+  .setup .panel + .panel {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 0.75rem;
+  }
+}
+@media (max-width: 560px) {
+  .loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .loop-wrap { position: static; }
+  h1 { font-size: 1.45rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js-run .panel.shown { animation: none; }
+}
+@media print {
+  html.js-run .panel { display: block !important; }
+  .loop-wrap { position: static; }
+  .actions, #replay, #skip-run { display: none; }
+  .table-scroll, .queries { max-height: none; overflow: visible; }
+}
+</style>
+  <script>
+(function () {
+  try {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.documentElement.classList.add("js-run");
+  } catch (err) {}
+})();
+</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap">
+    <header class="top">
+      <div class="top-text">
+        <p class="kicker">IPDET Impact London · 28–29 September 2026</p>
+        <h1>Montenegro RES Law and the first solar auction</h1>
+        <p class="status">Classroom sample · 27 articles · frozen 14 September 2026 · no API key</p>
+      </div>
+      <div class='actions'><button type='button' id='replay'>Replay run</button><button type='button' id='skip-run'>Skip to results</button></div>
+    </header>
+    <main id="main">
+      
+      
+      <nav class="loop-wrap" aria-label="Agent loop">
+        <ol class="loop">
+          <li><button type='button' data-step='goal' aria-current='false'><span class='n'>1</span><span class='name'>Goal</span><span class='gloss'>the question</span></button></li><li><button type='button' data-step='tools' aria-current='false'><span class='n'>2</span><span class='name'>Tools</span><span class='gloss'>allowed moves</span></button></li><li><button type='button' data-step='plan' aria-current='false'><span class='n'>3</span><span class='name'>Plan / reason</span><span class='gloss'>before acting</span></button></li><li><button type='button' data-step='action' aria-current='false'><span class='n'>4</span><span class='name'>Action</span><span class='gloss'>searches run</span></button></li><li><button type='button' data-step='observation' aria-current='false'><span class='n'>5</span><span class='name'>Observation</span><span class='gloss'>what came back</span></button></li><li><button type='button' data-step='memory' aria-current='false'><span class='n'>6</span><span class='name'>Memory</span><span class='gloss'>what is kept</span></button></li><li><button type='button' data-step='stop' aria-current='false'><span class='n'>7</span><span class='name'>Stop</span><span class='gloss'>why it halted</span></button></li>
+        </ol>
+      </nav>
+      <div id="live-status" class="sr-only" aria-live="polite"></div>
+      <section class="card setup">
+        <div class='panel' data-panel='goal'><h2>Goal</h2><p data-line>Evidence on how Montenegro’s Renewable Energy Sources (RES) Law and auctions are being received.</p><p class='note'>Published news and official statements only. No social media.</p></div>
+        <div class='panel' data-panel='tools'><h2>Tools</h2><p data-line>Search published pages, quote them, label tone and topic, then write.</p><ul><li>Search published news and official statements</li><li>Quote the page, or write not found</li><li>Label tone and topic from that quote</li><li>Write a summary, a tone strip, and a table</li></ul><p class='note'>Social media is out. Inventing a row to reach 20 is out.</p><p class='note'>This run reads the checked-in sample. No API key.</p></div>
+        <div class='panel' data-panel='plan'><h2>Plan / reason</h2><p data-line>Log every search. Label only from the quote. Write not found instead of inferring.</p><p class='note'>If a live search is thin or fails, keep the checked-in sample. Do not pad the table.</p></div>
+      </section>
+      <section class='card panel' data-panel='action'><p class='step-kicker'>Action</p><h2>Search log</h2><p data-line>10 searches on the checked-in sample. No API key. No live call.</p><p class='note'>Every query stays in the log, including empty passes and social-media exclusions.</p><ol class='queries'><li><span class='q'>Montenegro Renewable Energy Sources Law solar auction 2025 2026</span><span class='meta'>manual-pre-run · 5 hits · ok</span><span class='note'>Classroom sample compiled from published news and official pages. Not social media. Dates taken from the page (or marked not found).</span></li><li><span class='q'>Montenegro RES Law first solar auction news coverage</span><span class='meta'>manual-pre-run · 5 hits · ok</span></li><li><span class='q'>Montenegro solar auction 2025 investors grid coal phase-out</span><span class='meta'>manual-pre-run · 5 hits · ok</span></li><li><span class='q'>Montenegro Law on the Use of Energy from Renewable Sources August 2024</span><span class='meta'>manual-pre-run · 5 hits · ok</span></li><li><span class='q'>site:gov.me renewable energy auction solar 2025 Montenegro</span><span class='meta'>manual-pre-run · 5 hits · ok</span><span class='note'>Official PDFs on wapi.gov.me corroborate the July 2025 call and later government information; the sample table prefers citable HTML news/official pages.</span></li><li><span class='q'>Montenegro three-year incentive plan 2026-2028 solar wind auction</span><span class='meta'>manual-pre-run · 5 hits · ok</span></li><li><span class='q'>Montenegro market premium solar auction 2025 OR 2026</span><span class='meta'>manual-pre-run · 5 hits · ok</span></li><li><span class='q'>EBRD supports first renewable energy auction in Montenegro</span><span class='meta'>manual-pre-run · 1 hits · ok</span></li><li><span class='q'>Montenegro Energy Community Secretariat Renewable Energy Law 26 August 2024</span><span class='meta'>manual-pre-run · 2 hits · ok</span></li><li><span class='q'>social-media host exclusion</span><span class='meta'>filter · 0 hits · ok</span><span class='note'>No social URLs retained. Twitter/X, Facebook, LinkedIn, YouTube, Reddit and similar hosts are out of scope.</span></li></ol></section>
+      <section class='card panel' data-panel='observation'><p class='step-kicker'>Observation</p><p data-line>27 quoted articles: 13 positive, 7 negative, 7 neutral.</p><h2>Tone by month</h2><div class='strip'><div class='month' role='img' aria-label='2024-08: 1 positive, 0 negative, 1 neutral'><div class='bars'><div class='col'><span class='tick positive'>1</span><div class='bar positive' style='height:18px' title='positive: 1'></div></div><div class='col'><span class='tick negative'></span><div class='bar negative' style='height:2px' title='negative: 0'></div></div><div class='col'><span class='tick neutral'>1</span><div class='bar neutral' style='height:18px' title='neutral: 1'></div></div></div><label>2024-08</label></div><div class='month' role='img' aria-label='2024-09: 1 positive, 0 negative, 1 neutral'><div class='bars'><div class='col'><span class='tick positive'>1</span><div class='bar positive' style='height:18px' title='positive: 1'></div></div><div class='col'><span class='tick negative'></span><div class='bar negative' style='height:2px' title='negative: 0'></div></div><div class='col'><span class='tick neutral'>1</span><div class='bar neutral' style='height:18px' title='neutral: 1'></div></div></div><label>2024-09</label></div><div class='month' role='img' aria-label='2024-10: 1 positive, 0 negative, 1 neutral'><div class='bars'><div class='col'><span class='tick positive'>1</span><div class='bar positive' style='height:18px' title='positive: 1'></div></div><div class='col'><span class='tick negative'></span><div class='bar negative' style='height:2px' title='negative: 0'></div></div><div class='col'><span class='tick neutral'>1</span><div class='bar neutral' style='height:18px' title='neutral: 1'></div></div></div><label>2024-10</label></div><div class='month' role='img' aria-label='2025-06: 1 positive, 0 negative, 0 neutral'><div class='bars'><div class='col'><span class='tick positive'>1</span><div class='bar positive' style='height:18px' title='positive: 1'></div></div><div class='col'><span class='tick negative'></span><div class='bar negative' style='height:2px' title='negative: 0'></div></div><div class='col'><span class='tick neutral'></span><div class='bar neutral' style='height:2px' title='neutral: 0'></div></div></div><label>2025-06</label></div><div class='month' role='img' aria-label='2025-07: 3 positive, 0 negative, 3 neutral'><div class='bars'><div class='col'><span class='tick positive'>3</span><div class='bar positive' style='height:54px' title='positive: 3'></div></div><div class='col'><span class='tick negative'></span><div class='bar negative' style='height:2px' title='negative: 0'></div></div><div class='col'><span class='tick neutral'>3</span><div class='bar neutral' style='height:54px' title='neutral: 3'></div></div></div><label>2025-07</label></div><div class='month' role='img' aria-label='2025-12: 2 positive, 0 negative, 0 neutral'><div class='bars'><div class='col'><span class='tick positive'>2</span><div class='bar positive' style='height:36px' title='positive: 2'></div></div><div class='col'><span class='tick negative'></span><div class='bar negative' style='height:2px' title='negative: 0'></div></div><div class='col'><span class='tick neutral'></span><div class='bar neutral' style='height:2px' title='neutral: 0'></div></div></div><label>2025-12</label></div><div class='month' role='img' aria-label='2026-01: 0 positive, 4 negative, 0 neutral'><div class='bars'><div class='col'><span class='tick positive'></span><div class='bar positive' style='height:2px' title='positive: 0'></div></div><div class='col'><span class='tick negative'>4</span><div class='bar negative' style='height:72px' title='negative: 4'></div></div><div class='col'><span class='tick neutral'></span><div class='bar neutral' style='height:2px' title='neutral: 0'></div></div></div><label>2026-01</label></div><div class='month' role='img' aria-label='2026-02: 1 positive, 0 negative, 0 neutral'><div class='bars'><div class='col'><span class='tick positive'>1</span><div class='bar positive' style='height:18px' title='positive: 1'></div></div><div class='col'><span class='tick negative'></span><div class='bar negative' style='height:2px' title='negative: 0'></div></div><div class='col'><span class='tick neutral'></span><div class='bar neutral' style='height:2px' title='neutral: 0'></div></div></div><label>2026-02</label></div><div class='month' role='img' aria-label='2026-07: 2 positive, 2 negative, 1 neutral'><div class='bars'><div class='col'><span class='tick positive'>2</span><div class='bar positive' style='height:36px' title='positive: 2'></div></div><div class='col'><span class='tick negative'>2</span><div class='bar negative' style='height:36px' title='negative: 2'></div></div><div class='col'><span class='tick neutral'>1</span><div class='bar neutral' style='height:18px' title='neutral: 1'></div></div></div><label>2026-07</label></div><div class='month' role='img' aria-label='2026-08: 0 positive, 1 negative, 0 neutral'><div class='bars'><div class='col'><span class='tick positive'></span><div class='bar positive' style='height:2px' title='positive: 0'></div></div><div class='col'><span class='tick negative'>1</span><div class='bar negative' style='height:18px' title='negative: 1'></div></div><div class='col'><span class='tick neutral'></span><div class='bar neutral' style='height:2px' title='neutral: 0'></div></div></div><label>2026-08</label></div><div class='month wide' role='img' aria-label='date not found: 1 positive, 0 negative, 0 neutral'><div class='bars'><div class='col'><span class='tick positive'>1</span><div class='bar positive' style='height:18px' title='positive: 1'></div></div><div class='col'><span class='tick negative'></span><div class='bar negative' style='height:2px' title='negative: 0'></div></div><div class='col'><span class='tick neutral'></span><div class='bar neutral' style='height:2px' title='neutral: 0'></div></div></div><label>date not found</label></div></div><p class='legend'><span><span class='swatch positive'></span>positive</span><span><span class='swatch negative'></span>negative</span><span><span class='swatch neutral'></span>neutral</span></p><p class='note'>Scroll the strip sideways for later months.</p><h2>Quoted articles</h2><p class='note'>Tone is how the piece receives the reform. The line under each label is the reason.</p><div class='filters' role='group' aria-label='Filter by tone'><button type='button' data-tone-filter='all' class='is-on' aria-pressed='true'>All 27</button><button type='button' data-tone-filter='positive' aria-pressed='false'>positive 13</button><button type='button' data-tone-filter='negative' aria-pressed='false'>negative 7</button><button type='button' data-tone-filter='neutral' aria-pressed='false'>neutral 7</button></div><p id='filter-empty' class='note' hidden>No quoted article has this tone.</p><p class='note'>JPM &amp; Partners has no date: that page did not print one, so the cell stays not found.</p><p class='note'>Scroll inside the table for all 27 articles.</p><div class='table-scroll'><table id='quotes'><thead><tr><th scope='col'>Outlet</th><th scope='col'>Date</th><th scope='col'>Link</th><th scope='col'>Quote</th><th scope='col'>Tone</th><th scope='col'>Topic</th></tr></thead><tbody><tr data-tone='neutral'><td>Official Gazette of Montenegro</td><td>2024-08-23</td><td><a href='https://www.sluzbenilist.me/propisi/373190'>source</a></td><td class='quote'>Objavljeno: 23.08.2024. Stupio na snagu: 31.08.2024. Službeni list Crne Gore, broj 82/2024.<span class='just'>Zakon o korišćenju energije iz obnovljivih izvora</span></td><td><span class='tone neutral'>neutral</span><span class='just'>Official publication record; no evaluative language about reception.</span></td><td>legal framework<span class='just'>Related topic: the page records enactment dates, not investor, grid, coal or permitting outcomes.</span></td></tr><tr data-tone='positive'><td>Energy Community Secretariat</td><td>2024-08-26</td><td><a href='https://www.energy-community.org/news/Energy-Community-News/2024/08/26.html'>source</a></td><td class='quote'>Montenegro&#x27;s adoption of the Renewable Energy Law represents a pivotal moment, setting the stage for a new wave of investment in renewable energy.<span class='just'>Montenegro&#x27;s Renewable Energy Law paves the way for accelerated growth in renewables</span></td><td><span class='tone positive'>positive</span><span class='just'>Official statement frames the law as a pivotal moment that opens investment, not a warning.</span></td><td>investor interest<span class='just'>Canonical topic: the quoted claim is about a new wave of renewable investment.</span></td></tr><tr data-tone='positive'><td>CEENERGYNEWS</td><td>2024-09-04</td><td><a href='https://ceenergynews.com/renewables/montenegro-renewable-energy-law-to-align-country-with-eu-green-directives/'>source</a></td><td class='quote'>The Energy Community Secretariat in Vienna has stated that Montenegro’s newly adopted renewable energy law aligns the country with key EU renewables directives and demonstrates a strong commitment to achieving climate and energy targets.<span class='just'>Montenegro renewable energy law to align country with EU green directives</span></td><td><span class='tone positive'>positive</span><span class='just'>Piece relays official praise (alignment and strong commitment) without a counter-claim.</span></td><td>legal framework<span class='just'>Related topic: the quoted claim is EU-law alignment, not a grid or coal outcome.</span></td></tr><tr data-tone='neutral'><td>BDK Advokati</td><td>2024-09-10</td><td><a href='https://bdkadvokati.com/montenegrin-renewables-act-introduces-support-schemes-for-electricity-from-renewable-sources'>source</a></td><td class='quote'>The Montenegrin Act on the Use of Energy from Renewable Sources (Renewables Act) came into force on 31 August 2024. This legislation aims to promote the production and use of green energy… Its centrepiece is the introduction of support schemes for energy from renewable sources.<span class='just'>Montenegrin Renewables Act introduces support schemes for electricity from renewable sources</span></td><td><span class='tone neutral'>neutral</span><span class='just'>Legal briefing describes the scheme; it does not cheer or criticise reception.</span></td><td>auction design<span class='just'>Related topic: the quoted centrepiece is the support-scheme / auction architecture.</span></td></tr><tr data-tone='positive'><td>D2P Law</td><td>2024-10-01</td><td><a href='https://d2plaw.com/en/d2p-headlines/montenegro-new-law-on-the-use-of-energy-from-renewable-sources/'>source</a></td><td class='quote'>The first law of its kind enacted in Montenegro establishes a solid foundation for encouraging investment in renewable energy sources, with an emphasis on reducing carbon dioxide emissions.<span class='just'>Montenegro: New Law on the Use of Energy from Renewable Sources</span></td><td><span class='tone positive'>positive</span><span class='just'>Quoted language (&#x27;solid foundation for encouraging investment&#x27;) is explicitly favourable.</span></td><td>investor interest<span class='just'>Canonical topic: the claim is about encouraging investment.</span></td></tr><tr data-tone='neutral'><td>Balkan Green Energy News (CMS / Tamara Zejak)</td><td>2024-10-09</td><td><a href='https://balkangreenenergynews.com/cms-montenegro-what-does-the-new-law-on-renewable-energy-usage-bring/'>source</a></td><td class='quote'>Although the full implementation of the Renewable Energy Law also depends on the adoption of by-laws, it seems that this law will ensure a new wave of investment in the renewable energy sector in Montenegro.<span class='just'>CMS: Montenegro – What does the new Law on renewable energy usage bring?</span></td><td><span class='tone neutral'>neutral</span><span class='just'>Investment hope is explicitly conditioned on by-laws; mixed cue labelled neutral rather than inferred as success.</span></td><td>permitting<span class='just'>Canonical topic: the piece’s operational claim is the contact-point / permit-time rules and missing by-laws.</span></td></tr><tr data-tone='positive'><td>Balkan Green Energy News</td><td>2025-06-03</td><td><a href='https://balkangreenenergynews.com/montenegro-preparing-first-renewable-energy-auction-to-accelerate-green-transition/'>source</a></td><td class='quote'>This is not just the beginning of a technical process – it is a strategic leap, according to Minister of Energy and Mining Admir Šahmanović.<span class='just'>Montenegro preparing first renewable energy auctions to accelerate green transition</span></td><td><span class='tone positive'>positive</span><span class='just'>Minister’s quoted ‘strategic leap’ and 2030 targets are promotional; no failure is reported.</span></td><td>auction design<span class='just'>Related topic: the article is about designing the first auction, with permitting mentioned only as context.</span></td></tr><tr data-tone='neutral'><td>Balkan Green Energy News</td><td>2025-07-06</td><td><a href='https://balkangreenenergynews.com/montenegro-determines-quota-maximum-price-for-solar-power-auction/'>source</a></td><td class='quote'>At the forthcoming auction for market premiums for electricity from solar power plants in Montenegro, the participants will bid for state support for 250 MW in total capacity. The maximum price to compete for is EUR 65 per MWh and the contracts will last 12 years.<span class='just'>Montenegro determines quota, maximum price for solar power auction</span></td><td><span class='tone neutral'>neutral</span><span class='just'>Factual parameter announcement without a reception judgement.</span></td><td>auction design<span class='just'>Related topic: quoted claim is quota, ceiling price and contract length.</span></td></tr><tr data-tone='neutral'><td>pv magazine</td><td>2025-07-09</td><td><a href='https://www.pv-magazine.com/2025/07/09/montenegro-sets-ceiling-price-of-e65-mwh-for-first-solar-auction/'>source</a></td><td class='quote'>Montenegro has set a ceiling price of €65 ($76.11)/MWh for its first solar auction, which will offer 12-year contracts for difference (CfD) for up to 250 MW of capacity.<span class='just'>Montenegro sets ceiling price of €65/MWh for first solar auction</span></td><td><span class='tone neutral'>neutral</span><span class='just'>Trade-press recap of auction terms; no evaluative verdict on how the reform is landing.</span></td><td>auction design<span class='just'>Related topic: the quoted claim is the ceiling price and CfD structure.</span></td></tr><tr data-tone='positive'><td>Vijesti (MINA / Government of Montenegro)</td><td>2025-07-10</td><td><a href='https://en.vijesti.me/news-b/economy-d/766158/The-government%27s-goal-is-to-create-better-conditions-for-investing-in-renewable-energy-production-facilities.'>source</a></td><td class='quote'>The Information states that the main goal of the Law on the Use of Energy from Renewable Sources is to create better conditions for investing in the construction of facilities for the production of electricity from renewable sources.<span class='just'>Government: The goal is to create better conditions for investing in renewable energy production facilities</span></td><td><span class='tone positive'>positive</span><span class='just'>Official statement presents the law’s goal as better investment conditions.</span></td><td>investor interest<span class='just'>Canonical topic: quoted goal is creating better conditions for investing.</span></td></tr><tr data-tone='positive'><td>European Bank for Reconstruction and Development</td><td>2025-07-11</td><td><a href='https://www.ebrd.com/home/news-and-events/news/2025/montenegro-renewable-energy-auction.html'>source</a></td><td class='quote'>With support from the European Bank for Reconstruction and Development (EBRD), Montenegro’s Ministry of Energy and Mining has launched the country’s first renewable energy auction. The incentive scheme covers 250 megawatts (MW) of solar power generation capacity.<span class='just'>EBRD supports first renewable energy auction in Montenegro</span></td><td><span class='tone positive'>positive</span><span class='just'>Bank press note calls the auction a major step and an investor-friendly framework.</span></td><td>investor interest<span class='just'>Canonical topic: official claim is launching a 250 MW scheme to attract private investment.</span></td></tr><tr data-tone='positive'><td>Vijesti (MINA business)</td><td>2025-07-12</td><td><a href='https://en.vijesti.me/news-b/economy-d/766443/sahmanovic-launching-the-auction-process-will-open-the-door-for-hundreds-of-millions-of-euros-of-new-investments'>source</a></td><td class='quote'>For the first time, we are introducing a market-based, fair and transparent support system for renewable energy projects.<span class='just'>Šahmanović: Launching the auction process will open the door to hundreds of millions of euros of new investments</span></td><td><span class='tone positive'>positive</span><span class='just'>Quoted official language is unambiguously promotional (fair, transparent, hundreds of millions).</span></td><td>investor interest<span class='just'>Canonical topic: the claim is new investment inflows from the auction.</span></td></tr><tr data-tone='neutral'><td>Balkan Green Energy News</td><td>2025-07-14</td><td><a href='https://balkangreenenergynews.com/montenegro-sets-november-10-deadline-for-first-solar-power-auction/'>source</a></td><td class='quote'>The first such auction in Montenegro will be held for “unspecified locations,” which means that the planned photovoltaic systems can be located in any area in the country.<span class='just'>Montenegro sets November 10 deadline for first solar power auction</span></td><td><span class='tone neutral'>neutral</span><span class='just'>Operational recap of the call; minister’s price-stability remark is secondary to the parameters.</span></td><td>permitting<span class='just'>Canonical topic: location-neutral siting plus qualification/grid-connection documents for bidders.</span></td></tr><tr data-tone='positive'><td>Balkan Green Energy News</td><td>2025-12-10</td><td><a href='https://balkangreenenergynews.com/montenegro-adopts-national-energy-and-climate-plan/'>source</a></td><td class='quote'>This is a plan that enables new investments, new renewable energy power plants, modern grid infrastructure, and a secure transition for the Pljevlja coal region.<span class='just'>Montenegro adopts National Energy and Climate Plan</span></td><td><span class='tone positive'>positive</span><span class='just'>Ministry language presents the package as enabling investment and a secure coal-region transition.</span></td><td>coal phase-out<span class='just'>Canonical topic: quoted claim names a secure transition for the Pljevlja coal region (grid is mentioned in passing).</span></td></tr><tr data-tone='positive'><td>CEENERGYNEWS</td><td>2025-12-12</td><td><a href='https://ceenergynews.com/climate/montenegro-energy-and-climate-plan/'>source</a></td><td class='quote'>This is a plan that enables new investments, new RES power plants, modern grid infrastructure and a secure transition for Pljevlja.<span class='just'>Montenegro adopted the National Energy and Climate Plan</span></td><td><span class='tone positive'>positive</span><span class='just'>Repeats the ministry’s enabling-investment / Pljevlja-transition framing without a critical counter-quote.</span></td><td>coal phase-out<span class='just'>Canonical topic: Pljevlja transition is in the quoted sentence alongside RES investment.</span></td></tr><tr data-tone='negative'><td>Vijesti</td><td>2026-01-13</td><td><a href='https://en.vijesti.me/news-b/economy-d/791100/Bidders-did-not-meet-the-tender-conditions--the-call-for-awarding-financial-compensation-for-the-construction-of-solar-power-plants-was-canceled'>source</a></td><td class='quote'>At the end of last year, the Ministry of Energy canceled the tender… because none of the bids met the conditions prescribed by law and the public invitation, including the submission of evidence older than the prescribed deadlines, failure to meet the requirements related to spatial planning documentation and qualification requirements for connection to the electricity system.<span class='just'>Bidders did not meet tender conditions: Call for award of financial compensation for the construction of solar power plants canceled</span></td><td><span class='tone negative'>negative</span><span class='just'>Lead fact is cancellation because no bid met legal, spatial-planning and grid conditions.</span></td><td>permitting<span class='just'>Canonical topic: quoted failures are deadlines, spatial-planning documents and grid-connection qualifications (grid is the secondary cue).</span></td></tr><tr data-tone='negative'><td>Balkan Green Energy News</td><td>2026-01-14</td><td><a href='https://balkangreenenergynews.com/montenegro-to-renew-first-solar-power-auction-call-as-soon-as-possible/'>source</a></td><td class='quote'>After rejecting all bids within its first auction for market premiums for solar power projects, the Ministry of Energy and Mining of Montenegro vowed to tackle the shortcomings in the conditions for participation and renew the public call as soon as possible.<span class='just'>Montenegro to renew first solar power auction call as soon as possible</span></td><td><span class='tone negative'>negative</span><span class='just'>News value is the rejection of all bids and admitted defects in auction conditions.</span></td><td>permitting<span class='just'>Canonical topic: quoted shortcomings are participation/qualification conditions, including planning documents.</span></td></tr><tr data-tone='negative'><td>Montenegrobusiness</td><td>2026-01-15</td><td><a href='https://montenegrobusiness.eu/montenegros-cancelled-solar-auction-and-the-reset-of-its-renewable-energy-strategy/'>source</a></td><td class='quote'>In practice, the outcome revealed a mismatch between regulatory design, documentation requirements, and the readiness of bidders to comply with local conditions.<span class='just'>Montenegro’s cancelled solar auction and the reset of its renewable energy strategy</span></td><td><span class='tone negative'>negative</span><span class='just'>Quoted ‘mismatch’ and cancelled-auction framing is a setback, even while a reset is proposed.</span></td><td>permitting<span class='just'>Canonical topic: the quoted mismatch is regulatory design and documentation/permitting readiness.</span></td></tr><tr data-tone='negative'><td>Serbia SEE Energy Mining News</td><td>2026-01-15</td><td><a href='https://serbia-energy.eu/montenegro-scraps-first-solar-auction-and-prepares-new-renewables-tender-for-2026/'>source</a></td><td class='quote'>The tender, launched last year, was cancelled because applications contained outdated documentation, were not aligned with spatial planning rules or did not satisfy grid connection eligibility criteria.<span class='just'>Montenegro scraps first solar auction and prepares new renewables tender for 2026</span></td><td><span class='tone negative'>negative</span><span class='just'>Headline and quoted cause are a scrap/cancellation on compliance grounds.</span></td><td>grid<span class='just'>Canonical topic: quoted eligibility failure includes grid connection alongside spatial planning.</span></td></tr><tr data-tone='positive'><td>The Region (Connecting Region)</td><td>2026-02-05</td><td><a href='https://connectingregion.com/news/montenegro-launches-renewable-energy-association-with-ebrd-and-eu-support/'>source</a></td><td class='quote'>EBRD Montenegro Director Remon Zakaria highlighted that recent legislative reforms and competitive auctions have created a solid foundation for renewable energy development, while the new association will help ensure continued cooperation with investors.<span class='just'>Montenegro Launches Renewable Energy Association With EBRD And EU Support</span></td><td><span class='tone positive'>positive</span><span class='just'>Quoted EBRD/minister language is ‘solid foundation’ and credible destination — promotional, post-cancellation.</span></td><td>investor interest<span class='just'>Canonical topic: the quoted claim is cooperation with investors after the legislative reforms.</span></td></tr><tr data-tone='positive'><td>Vijesti</td><td>2026-07-09</td><td><a href='https://en.vijesti.me/news-b/economy-d/817057/sahmanovic-we-are-strengthening-the-legal-framework-in-order-to-open-a-new-investment-cycle-in-renewable-energy-sources'>source</a></td><td class='quote'>Investor interest exists and is growing. It is up to us to create a quality regulatory framework and ensure that serious partners enter the market ready to implement projects.<span class='just'>Šahmanović: We are strengthening the legal framework to open a new investment cycle in renewable energy sources</span></td><td><span class='tone positive'>positive</span><span class='just'>Quoted official line is growing investor interest and a new investment cycle.</span></td><td>investor interest<span class='just'>Canonical topic: quoted claim is investor interest and a new investment cycle (just transition is secondary).</span></td></tr><tr data-tone='positive'><td>The Region (Connecting Region)</td><td>2026-07-10</td><td><a href='https://connectingregion.com/news/montenegro-prepares-new-renewable-energy-auctions/'>source</a></td><td class='quote'>Šahmanović said Montenegro already has a strong pipeline of solar and wind projects and that investor interest continues to grow.<span class='just'>Montenegro Prepares New Renewable Energy Auctions</span></td><td><span class='tone positive'>positive</span><span class='just'>Quoted ministerial claim is a strong pipeline and growing investor interest.</span></td><td>investor interest<span class='just'>Canonical topic: investor interest and auction relaunch, not a grid outage or coal closure.</span></td></tr><tr data-tone='neutral'><td>Vijesti</td><td>2026-07-16</td><td><a href='https://en.vijesti.me/news-b/economy-d/818017/new-tender-awaits-changed-rules'>source</a></td><td class='quote'>The Ministry of Energy, in cooperation with the European Bank for Reconstruction and Development (EBRD), is working on improving the tender documentation for the allocation of market premiums for solar power plants, after the previous auction was canceled.<span class='just'>New tender awaits changed rules</span></td><td><span class='tone neutral'>neutral</span><span class='just'>Reports delay and cancelled prior auction but also the ministry’s quality-over-speed defence; mixed, so not labelled negative by inference.</span></td><td>permitting<span class='just'>Canonical topic: quoted work is revising tender/legal conditions before reopening the call.</span></td></tr><tr data-tone='negative'><td>Energy News South East Europe</td><td>2026-07-20</td><td><a href='https://seeenergy.news/montenegro-prepares-revised-250-mw-solar-market-premium-auction-after-first-tender-failure/'>source</a></td><td class='quote'>Officials have not set a replacement launch date. They are prioritising changes to the legal, spatial-planning and grid-connection framework.<span class='just'>Montenegro prepares revised 250 MW solar market-premium auction after first tender failure</span></td><td><span class='tone negative'>negative</span><span class='just'>Quoted facts are tender failure plus no replacement date — a reception setback, not a success story.</span></td><td>grid<span class='just'>Canonical topic: quoted priority list names the grid-connection framework alongside spatial planning.</span></td></tr><tr data-tone='negative'><td>Power Trading News Europe</td><td>2026-07-20</td><td><a href='https://electricity.trade/montenegro-prepares-revised-250-mw-solar-market-premium-auction-after-first-tender-failure/'>source</a></td><td class='quote'>The auction did not fail due to a lack of interest in Montenegrin solar development. Instead, the submitted projects could not satisfy the complete compliance package required for participation.<span class='just'>Montenegro prepares revised 250 MW solar market-premium auction after first tender failure</span></td><td><span class='tone negative'>negative</span><span class='just'>Still a failed first tender; the ‘not lack of interest’ clause explains the cause rather than reversing the outcome.</span></td><td>grid<span class='just'>Canonical topic: bankability discussion is grid, dispatch and curtailment under the auction contract.</span></td></tr><tr data-tone='negative'><td>Energy News South East Europe</td><td>2026-08-07</td><td><a href='https://seeenergy.news/montenegro-plans-450-mw-renewables-tenders-as-solar-auction-redesigns-begin/'>source</a></td><td class='quote'>The Ministry of Energy, with support from the European Bank for Reconstruction and Development (EBRD), is redesigning the tender framework after the inaugural 250 MW solar auction failed to produce projects that met legal and technical standards.<span class='just'>Montenegro plans 450 MW renewables tenders as solar auction redesigns begin</span></td><td><span class='tone negative'>negative</span><span class='just'>Lead is redesign after the inaugural auction failed legal/technical standards.</span></td><td>permitting<span class='just'>Canonical topic: quoted failure is legal and technical standards (land/permits/grid as implementation gates).</span></td></tr><tr data-tone='positive'><td>JPM &amp; Partners</td><td><span class='missing'>not found</span></td><td><a href='https://www.jpm.law/montenegros-new-renewable-energy-regulation-insights-and-key-novelties/'>source</a></td><td class='quote'>The Parliament of Montenegro passed the Law on the Use of Energy from Renewable Sources, which was published in the Official Gazette of Montenegro on August 23rd, 2024.<span class='just'>Montenegro’s New Renewable Energy Regulation: Insights and Key Novelties</span></td><td><span class='tone positive'>positive</span><span class='just'>Closing line of the page says the law aims to enhance investment conditions for buyers and investors.</span></td><td>investor interest<span class='just'>Canonical topic: quoted purpose is enhancing investment conditions.</span></td></tr></tbody></table></div></section>
+      <section class='card panel summary' data-panel='memory'><p class='step-kicker'>Memory</p><h2>Two-line summary</h2><p class='note' data-line>Kept from this run: the search log, the labels on each quote, and this summary.</p><p class='lead'>After the August 2024 RES Law, published coverage was mostly legal briefing: Energy Community, law firms and the EBRD treated auctions and market premiums as the new investment framework.</p><p class='lead'>Reception shifted after the first 250 MW solar auction — July 2025 launch pieces were optimistic, but from January 2026 outlets reported all four bids disqualified on permitting, grid and documentation grounds, and by July–August 2026 official statements said a relaunch awaits revised rules with no date fixed.</p></section>
+      <section class='card panel' data-panel='stop'><p class='step-kicker'>Stop</p><h2>Stop</h2><p data-line>Stopped. 27 articles meet the target of at least 20. Each tone has a one-line reason, so the run does not search again.</p></section>
+    </main>
+    <footer>
+      <p>IPDET Impact London · 28–29 September 2026 · Filo Analytics</p>
+      <p>Generated 2026-09-24T11:35:27+00:00 · sample / sample</p>
+    </footer>
+  </div>
+  <script>
+(function () {
+  try {
+    var root = document.documentElement;
+    var steps = ["goal", "tools", "plan", "action", "observation", "memory", "stop"];
+    var buttons = steps.map(function (id) {
+      return document.querySelector('[data-step="' + id + '"]');
+    });
+    var panels = steps.map(function (id) {
+      return document.querySelector('[data-panel="' + id + '"]');
+    });
+    var live = document.getElementById("live-status");
+    var timer = null;
+    var index = -1;
+    var settled = false;
+    var reduce = false;
+    try {
+      reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch (err) {}
+
+    function lineOf(i) {
+      var panel = panels[i];
+      if (!panel) return "";
+      var node = panel.querySelector("[data-line]");
+      return node ? node.textContent.replace(/\s+/g, " ").trim() : "";
+    }
+
+    function setStatus(i) {
+      if (!live || i < 0) return;
+      var btn = buttons[i];
+      var nameNode = btn ? btn.querySelector(".name") : null;
+      var name = nameNode ? nameNode.textContent.trim() : steps[i];
+      live.textContent = "Step " + (i + 1) + " of " + steps.length + ". " + name + ". " + lineOf(i);
+    }
+
+    function paint(i, collapse) {
+      panels.forEach(function (panel, n) {
+        if (!panel) return;
+        panel.classList.toggle("shown", collapse ? n <= i : true);
+        panel.classList.toggle("current", n === i);
+      });
+      buttons.forEach(function (btn, n) {
+        if (!btn) return;
+        btn.classList.toggle("now", n === i);
+        btn.classList.toggle("done", collapse ? n < i : n !== i);
+        btn.setAttribute("aria-current", n === i ? "step" : "false");
+      });
+      setStatus(i);
+    }
+
+    function scrollToStep(i) {
+      var panel = panels[i];
+      if (!panel) return;
+      window.requestAnimationFrame(function () {
+        panel.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
+      });
+    }
+
+    function pause() {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function settle() {
+      pause();
+      settled = true;
+      root.classList.remove("js-run");
+      root.classList.add("is-settled");
+      panels.forEach(function (panel) {
+        if (!panel) return;
+        panel.classList.add("shown");
+        panel.classList.remove("current");
+      });
+      buttons.forEach(function (btn) {
+        if (!btn) return;
+        btn.classList.add("done");
+        btn.classList.remove("now");
+        btn.setAttribute("aria-current", "false");
+      });
+      if (live) {
+        live.textContent = "Run finished. Summary, tone strip, quoted articles, and search log are on the page.";
+      }
+    }
+
+    function play() {
+      if (reduce) {
+        settle();
+        return;
+      }
+      pause();
+      settled = false;
+      root.classList.add("js-run");
+      root.classList.remove("is-settled");
+      index = 0;
+      paint(0, true);
+      scrollToStep(0);
+      timer = window.setInterval(function () {
+        if (index >= steps.length - 1) {
+          settle();
+          return;
+        }
+        index += 1;
+        paint(index, true);
+        scrollToStep(index);
+      }, 1600);
+    }
+
+    buttons.forEach(function (btn, i) {
+      if (!btn) return;
+      btn.addEventListener("click", function () {
+        pause();
+        if (settled) {
+          paint(i, false);
+          buttons.forEach(function (other, n) {
+            if (!other) return;
+            other.classList.add("done");
+            other.classList.toggle("now", n === i);
+          });
+          scrollToStep(i);
+          return;
+        }
+        index = i;
+        paint(i, true);
+        scrollToStep(i);
+      });
+    });
+
+    var replay = document.getElementById("replay");
+    if (replay) {
+      replay.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+        play();
+      });
+    }
+    var skip = document.getElementById("skip-run");
+    if (skip) skip.addEventListener("click", settle);
+
+    document.querySelectorAll("[data-tone-filter]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var tone = btn.getAttribute("data-tone-filter") || "all";
+        var visible = 0;
+        document.querySelectorAll("#quotes tbody tr").forEach(function (row) {
+          if (row.getAttribute("data-empty")) return;
+          var show = tone === "all" || row.getAttribute("data-tone") === tone;
+          row.hidden = !show;
+          if (show) visible += 1;
+        });
+        var empty = document.getElementById("filter-empty");
+        if (empty) empty.hidden = tone === "all" || visible > 0;
+        document.querySelectorAll("[data-tone-filter]").forEach(function (other) {
+          var on = other === btn;
+          other.classList.toggle("is-on", on);
+          other.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+      });
+    });
+
+    if (reduce || !root.classList.contains("js-run")) settle();
+    else play();
+  } catch (err) {
+    document.documentElement.classList.remove("js-run");
+    document.documentElement.classList.add("is-settled");
+  }
+})();
+</script>
+</body>
+</html>
