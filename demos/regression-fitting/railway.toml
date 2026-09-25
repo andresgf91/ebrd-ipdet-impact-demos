@@ -1,0 +1,8 @@
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+startCommand = "python3 serve.py"
+healthcheckPath = "/"
+healthcheckTimeout = 30

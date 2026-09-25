@@ -11,6 +11,7 @@ This repo is a **folder of demos**, not a one-off script. Each session piece liv
 | Folder | What it teaches |
 | --- | --- |
 | [`demos/montenegro-res-news/`](demos/montenegro-res-news/) | Search → analyse → report agent on Montenegro’s RES Law and first solar auction (slide: *What the agent does* / *The mandate*) |
+| [`demos/regression-fitting/`](demos/regression-fitting/) | Climate credit-line sub-loans. `index.html` is the walkthrough. `copilot.html` is the Copilot live result. |
 
 ## How to run (classroom)
 
@@ -34,6 +35,10 @@ python -m uvicorn montenegro_res_news.web:app --host 127.0.0.1 --port 8000
 ```
 
 Then open http://127.0.0.1:8000/ . Live search on the hosted page runs only if a Tavily, Brave, or NewsAPI key is set.
+
+## Regression fitting
+
+[Regression fitting](demos/regression-fitting/) — climate credit-line sub-loans. `index.html` is the walkthrough. `copilot.html` is the Copilot live result.
 
 ## How to add a later demo
 

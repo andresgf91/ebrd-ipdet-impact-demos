@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regression fitting — climate credit line</title>
+<style>
+  :root {
+    --bg: #f3f0e8;
+    --paper: #fffdf8;
+    --ink: #1c1915;
+    --muted: #5e584e;
+    --line: #e3dcd0;
+    --green: #0e6b50;
+    --green-soft: #e5f3ed;
+    --rust: #8c3d2a;
+    --rust-soft: #f8ebe6;
+    --shadow: 0 1px 0 rgba(28, 25, 21, 0.04);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    overflow: hidden;
+  }
+  .app {
+    height: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 18px 22px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  header { flex: none; }
+  .topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .page-link {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green);
+  }
+  .eyebrow {
+    margin: 0;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    margin: 2px 0 0;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .copilot-note {
+    margin: 8px 0 0;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  .copilot-note code {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    color: var(--ink);
+  }
+  .beats {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .beat {
+    flex: 1;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 13px;
+    text-align: center;
+  }
+  .beat.now {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fffdf8;
+  }
+  .beat.done { color: var(--ink); background: #fff; }
+  .stage {
+    flex: 1;
+    min-height: 0;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    overflow: auto;
+    padding: 22px 26px 26px;
+  }
+  .kicker {
+    margin: 0 0 4px;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .stage h2 {
+    margin: 0 0 8px;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .deck {
+    margin: 0 0 16px;
+    max-width: 68ch;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .prompt p {
+    max-width: 68ch;
+    margin: 0 0 16px;
+    font-size: 21px;
+    line-height: 1.45;
+  }
+  .editor, .terminal {
+    height: calc(100% - 78px);
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fcfbf7;
+  }
+  .tab {
+    flex: none;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12.5px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    background: #f6f3ec;
+  }
+  .tab strong { color: var(--ink); font-weight: 600; }
+  pre.pad {
+    flex: 1;
+    margin: 0;
+    overflow: auto;
+    padding: 10px 0 18px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .row { display: flex; padding: 0 12px 0 0; }
+  .ln {
+    flex: none;
+    width: 46px;
+    text-align: right;
+    padding-right: 12px;
+    color: #b0a89a;
+    user-select: none;
+  }
+  .src { white-space: pre; }
+  .cm { color: #8a8174; }
+  .kw { color: var(--green); }
+  .st { color: #8c3d2a; }
+  .caret {
+    display: inline-block;
+    width: 7px;
+    height: 1em;
+    background: var(--green);
+    margin-left: 1px;
+    vertical-align: text-bottom;
+    animation: blink 1.05s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .cmd { color: var(--green); }
+  .cards { display: flex; flex-direction: column; gap: 12px; max-width: 740px; }
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px 16px;
+    background: #fff;
+  }
+  .card h3 {
+    margin: 0;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .formula {
+    margin: 8px 0 4px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 15px;
+  }
+  .figure {
+    margin: 0;
+    font-size: 42px;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  .figure span {
+    font-size: 16px;
+    letter-spacing: 0;
+    color: var(--muted);
+    margin-left: 8px;
+  }
+  .card p { margin: 8px 0 0; font-size: 18px; line-height: 1.4; }
+  .card.wrong { background: var(--rust-soft); border-color: #efd5cc; }
+  .card.catch { border-left: 4px solid var(--rust); }
+  .card.quiet { background: var(--green-soft); border-color: #d3e8df; }
+  .card.quiet p { font-size: 17px; }
+  .controls {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  button {
+    appearance: none;
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: #fffdf8;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font: 600 15px/1 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    cursor: pointer;
+  }
+  button.secondary { background: #fff; color: var(--ink); }
+  button:focus-visible { outline: 3px solid #9dcebc; outline-offset: 2px; }
+  #status {
+    margin-left: 6px;
+    font-size: 13px;
+    color: var(--muted);
+    min-width: 72px;
+  }
+  #progress {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .keys { font-size: 12px; color: #8a8174; }
+  @media (max-width: 800px) {
+    .app { padding: 12px; }
+    h1 { font-size: 22px; }
+    .prompt p, .card p { font-size: 17px; }
+    .figure { font-size: 34px; }
+    .beats { flex-wrap: wrap; }
+    .keys { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .caret { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <p class="eyebrow">IPDET Impact · classroom walkthrough</p>
+    <div class="topline">
+      <h1 id="title">Regression fitting</h1>
+      <a class="page-link" href="copilot.html">Copilot result</a>
+    </div>
+    <p class="copilot-note">For a live Copilot recording, paste <code>copilot_live_prompt.txt</code> and attach the CSV. The page itself does not call a model.</p>
+    <div class="beats" id="beats" aria-hidden="true">
+      <div class="beat now" data-beat="0">1 · The problem</div>
+      <div class="beat" data-beat="1">2 · Code</div>
+      <div class="beat" data-beat="2">3 · Run</div>
+      <div class="beat" data-beat="3">4 · Results</div>
+    </div>
+  </header>
+  <main class="stage" id="stage">
+    <p class="kicker" id="kicker">1 of 4</p>
+    <h2 id="heading">The problem</h2>
+    <p class="deck" id="deck">Press Play. The credit-line mandate comes first.</p>
+    <div id="view-prompt" class="prompt"></div>
+    <div id="view-code" hidden></div>
+    <div id="view-run" hidden></div>
+    <div id="view-results" hidden></div>
+  </main>
+  <div class="controls">
+    <button type="button" id="play">Play</button>
+    <button type="button" id="pause" class="secondary">Pause</button>
+    <button type="button" id="step" class="secondary">Step</button>
+    <span id="status">Paused</span>
+    <span class="keys">Space play or pause · Right arrow step</span>
+    <span id="progress"></span>
+  </div>
+</div>
+<script id="code-src" type="text/plain">#!/usr/bin/env python3
+"""Where the GHG reduction in the BA climate credit line actually came from.
+
+Specification
+-------------
+Primary model (OLS, HC3 robust SEs):
+
+    log(ghg_tco2_yr) = β0 + β1 log(loan_usd)
+                       + AssetType + Sector + Region + BorrowerSize + Year + ε
+
+Reference levels: Efficient boiler, Manufacturing, Urban, Small, 2021.
+
+Why this spec
+-------------
+GHG and ticket size are strictly positive and right-skewed. A levels OLS would
+be identified off a handful of industrial-process outliers and would mix two
+different mechanisms (bigger loans vs higher-intensity assets). Log-log
+separates scale from technology: β1 is an elasticity; asset-type coefficients
+are multiplicative intensity premia holding loan size fixed. Year dummies
+absorb vintage/reporting drift. HC3 SEs allow residual variance to differ by
+asset class.
+
+This is an accounting / association model on reported figures, not a causal
+impact estimate.
+"""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+
+CSV = Path(__file__).resolve().parent / "data" / "ba_loan_climate_subloans.csv"
+TARGET_TCO2 = 20_469.0
+OUT = Path("/tmp/ba_loan_ghg_analysis.json")
+
+
+def fmt(n: float, digits: int = 1) -> float:
+    return round(float(n), digits)
+
+
+def share(part: float, total: float) -> float:
+    return round(100.0 * part / total, 1)
+
+
+def group_table(df: pd.DataFrame, col: str, total_ghg: float, total_usd: float) -> list[dict]:
+    g = (
+        df.groupby(col, observed=True)
+        .agg(
+            n=("loan_id", "count"),
+            loan_usd=("loan_usd", "sum"),
+            ghg=("ghg_tco2_yr", "sum"),
+            median_ghg=("ghg_tco2_yr", "median"),
+            mean_ghg=("ghg_tco2_yr", "mean"),
+        )
+        .reset_index()
+    )
+    g["intensity"] = g["ghg"] / g["loan_usd"] * 1_000_000
+    g["ghg_share"] = 100.0 * g["ghg"] / total_ghg
+    g["usd_share"] = 100.0 * g["loan_usd"] / total_usd
+    g = g.sort_values("ghg", ascending=False)
+    rows = []
+    for _, r in g.iterrows():
+        rows.append(
+            {
+                "name": str(r[col]),
+                "n": int(r["n"]),
+                "loan_usd": fmt(r["loan_usd"], 0),
+                "ghg": fmt(r["ghg"], 1),
+                "median_ghg": fmt(r["median_ghg"], 1),
+                "mean_ghg": fmt(r["mean_ghg"], 1),
+                "intensity": fmt(r["intensity"], 1),
+                "ghg_share": fmt(r["ghg_share"], 1),
+                "usd_share": fmt(r["usd_share"], 1),
+            }
+        )
+    return rows
+
+
+def coef_table(res, terms: list[str] | None = None) -> list[dict]:
+    rows = []
+    for name in res.params.index:
+        if terms is not None and name not in terms:
+            continue
+        ci = res.conf_int().loc[name]
+        rows.append(
+            {
+                "term": name,
+                "coef": fmt(res.params[name], 4),
+                "se": fmt(res.bse[name], 4),
+                "t": fmt(res.tvalues[name], 2),
+                "p": fmt(res.pvalues[name], 4),
+                "ci_low": fmt(ci.iloc[0], 4),
+                "ci_high": fmt(ci.iloc[1], 4),
+                "mult": fmt(np.exp(res.params[name]), 3)
+                if name != "Intercept"
+                else None,
+            }
+        )
+    return rows
+
+
+def main() -> None:
+    df = pd.read_csv(CSV)
+    assert len(df) == 214, len(df)
+    assert df.isna().sum().sum() == 0
+
+    df["log_ghg"] = np.log(df["ghg_tco2_yr"])
+    df["log_loan"] = np.log(df["loan_usd"])
+    df["intensity"] = df["ghg_tco2_yr"] / df["loan_usd"] * 1_000_000
+    df["year"] = df["year"].astype("category")
+    df["asset_type"] = pd.Categorical(
+        df["asset_type"],
+        categories=[
+            "Efficient boiler",
+            "Cold chain",
+            "Fleet renewal",
+            "EDGE green building",
+            "Solar PV",
+            "Industrial process",
+        ],
+    )
+    df["sector"] = pd.Categorical(
+        df["sector"],
+        categories=[
+            "Manufacturing",
+            "Agribusiness",
+            "Real estate",
+            "Retail & services",
+            "Transport",
+        ],
+    )
+    df["region"] = pd.Categorical(df["region"], categories=["Urban", "Rural"])
+    df["borrower_size"] = pd.Categorical(
+        df["borrower_size"], categories=["Small", "Micro", "Medium"]
+    )
+
+    total_ghg = float(df["ghg_tco2_yr"].sum())
+    total_usd = float(df["loan_usd"].sum())
+    n = len(df)
+
+    ranked = df.sort_values("ghg_tco2_yr", ascending=False).reset_index(drop=True)
+    ranked["cum_ghg"] = ranked["ghg_tco2_yr"].cumsum()
+    ranked["cum_share"] = ranked["cum_ghg"] / total_ghg
+    ranked["rank"] = np.arange(1, n + 1)
+    ranked["deal_share"] = ranked["rank"] / n
+
+    def deals_for(threshold: float) -> int:
+        return int((ranked["cum_share"] < threshold).sum() + 1)
+
+    top_ns = [1, 5, 10, 15, 20]
+    top_shares = {
+        f"top_{k}": {
+            "n": k,
+            "deal_pct": round(100.0 * k / n, 1),
+            "ghg": fmt(ranked.loc[: k - 1, "ghg_tco2_yr"].sum(), 1),
+            "ghg_share": share(ranked.loc[: k - 1, "ghg_tco2_yr"].sum(), total_ghg),
+            "usd_share": share(ranked.loc[: k - 1, "loan_usd"].sum(), total_usd),
+        }
+        for k in top_ns
+    }
+
+    # Gini on GHG
+    x = np.sort(df["ghg_tco2_yr"].to_numpy())
+    gini = float((2 * np.arange(1, n + 1) - n - 1).dot(x) / (n * x.sum()))
+
+    # Lorenz points for canvas (every ~5 deals plus endpoints)
+    lorenz_idx = sorted(set([0] + list(range(4, n, 5)) + [n - 1]))
+    lorenz = [
+        {
+            "deals": int(ranked.loc[i, "rank"]),
+            "deal_pct": fmt(100.0 * ranked.loc[i, "deal_share"], 1),
+            "ghg_share": fmt(100.0 * ranked.loc[i, "cum_share"], 1),
+        }
+        for i in lorenz_idx
+    ]
+    # equal-volume Lorenz for comparison
+    vol = df.sort_values("loan_usd", ascending=False).reset_index(drop=True)
+    vol["cum_share"] = vol["loan_usd"].cumsum() / total_usd
+    vol_lorenz = [
+        fmt(100.0 * vol.loc[i, "cum_share"], 1) for i in lorenz_idx
+    ]
+
+    top10 = []
+    for _, r in ranked.head(10).iterrows():
+        top10.append(
+            {
+                "loan_id": r["loan_id"],
+                "year": int(r["year"]),
+                "asset_type": r["asset_type"],
+                "sector": r["sector"],
+                "region": r["region"],
+                "borrower_size": r["borrower_size"],
+                "loan_usd": fmt(r["loan_usd"], 0),
+                "ghg": fmt(r["ghg_tco2_yr"], 1),
+                "ghg_share": share(r["ghg_tco2_yr"], total_ghg),
+                "intensity": fmt(r["intensity"], 1),
+            }
+        )
+
+    industrial = df[df["asset_type"] == "Industrial process"]
+    rest = df[df["asset_type"] != "Industrial process"]
+    solar = df[df["asset_type"] == "Solar PV"]
+    without_top10 = ranked.iloc[10:]
+
+    formula = (
+        "log_ghg ~ log_loan + C(asset_type) + C(sector) + C(region) "
+        "+ C(borrower_size) + C(year)"
+    )
+    model = smf.ols(formula, data=df).fit(cov_type="HC3")
+
+    nested = {
+        "size_only": smf.ols("log_ghg ~ log_loan", data=df).fit(cov_type="HC3"),
+        "size_asset": smf.ols(
+            "log_ghg ~ log_loan + C(asset_type)", data=df
+        ).fit(cov_type="HC3"),
+        "size_asset_sector": smf.ols(
+            "log_ghg ~ log_loan + C(asset_type) + C(sector)", data=df
+        ).fit(cov_type="HC3"),
+        "full": model,
+    }
+    nested_fit = {
+        k: {
+            "r2": fmt(v.rsquared, 3),
+            "r2_adj": fmt(v.rsquared_adj, 3),
+            "n": int(v.nobs),
+            "aic": fmt(v.aic, 1),
+            "elasticity": fmt(v.params["log_loan"], 3),
+            "elasticity_se": fmt(v.bse["log_loan"], 3),
+            "elasticity_p": fmt(v.pvalues["log_loan"], 4),
+        }
+        for k, v in nested.items()
+    }
+
+    # Type II ANOVA on the OLS (non-robust, for variance shares)
+    anova = sm.stats.anova_lm(model, typ=2)
+    ss_total = float(anova["sum_sq"].sum())
+    anova_rows = []
+    for term, r in anova.iterrows():
+        anova_rows.append(
+            {
+                "term": term,
+                "sum_sq": fmt(r["sum_sq"], 3),
+                "df": int(r["df"]),
+                "f": None if pd.isna(r["F"]) else fmt(r["F"], 2),
+                "p": None if pd.isna(r["PR(>F)"]) else fmt(r["PR(>F)"], 4),
+                "share_of_explained": fmt(100.0 * r["sum_sq"] / (ss_total - anova.loc["Residual", "sum_sq"]), 1)
+                if term != "Residual"
+                else None,
+            }
+        )
+
+    # VIF on the design matrix excluding intercept
+    exog = model.model.exog
+    names = model.model.exog_names
+    vif_rows = []
+    for i, name in enumerate(names):
+        if name == "Intercept":
+            continue
+        vif_rows.append({"term": name, "vif": fmt(variance_inflation_factor(exog, i), 2)})
+
+    # Influence: how much the top GHG deals pull the elasticity
+    infl = model.get_influence()
+    cooks = infl.cooks_distance[0]
+    influence = (
+        pd.DataFrame(
+            {
+                "loan_id": df["loan_id"].to_numpy(),
+                "asset_type": df["asset_type"].to_numpy(),
+                "ghg": df["ghg_tco2_yr"].to_numpy(),
+                "cooks": cooks,
+                "student_resid": infl.resid_studentized_internal,
+            }
+        )
+        .sort_values("cooks", ascending=False)
+        .head(8)
+    )
+    influence_rows = [
+        {
+            "loan_id": r["loan_id"],
+            "asset_type": r["asset_type"],
+            "ghg": fmt(r["ghg"], 1),
+            "cooks": fmt(r["cooks"], 4),
+            "student_resid": fmt(r["student_resid"], 2),
+        }
+        for _, r in influence.iterrows()
+    ]
+
+    # Residual diagnostics
+    resid = model.resid
+    fitted = model.fittedvalues
+    jb = sm.stats.jarque_bera(resid)
+    bp = sm.stats.het_breuschpagan(resid, model.model.exog)
+
+    # Leave-out industrial process: does the overshoot survive?
+    rest_ghg = float(rest["ghg_tco2_yr"].sum())
+    no_top10_ghg = float(without_top10["ghg_tco2_yr"].sum())
+    industrial_only = float(industrial["ghg_tco2_yr"].sum())
+    solar_plus_ind = float(
+        df[df["asset_type"].isin(["Industrial process", "Solar PV"])]["ghg_tco2_yr"].sum()
+    )
+
+    # Intensity OLS as robustness: what drives tCO2 per $m, not scale
+    intensity_model = smf.ols(
+        "np.log(intensity) ~ C(asset_type) + C(sector) + C(region) "
+        "+ C(borrower_size) + C(year)",
+        data=df,
+    ).fit(cov_type="HC3")
+
+    asset_mult = []
+    for name, coef in model.params.items():
+        if not name.startswith("C(asset_type)"):
+            continue
+        label = name.split("[T.")[1].rstrip("]")
+        asset_mult.append(
+            {
+                "asset": label,
+                "log_coef": fmt(coef, 3),
+                "se": fmt(model.bse[name], 3),
+                "p": fmt(model.pvalues[name], 4),
+                "multiplier_vs_boiler": fmt(np.exp(coef), 2),
+                "ci_low": fmt(np.exp(model.conf_int().loc[name].iloc[0]), 2),
+                "ci_high": fmt(np.exp(model.conf_int().loc[name].iloc[1]), 2),
+            }
+        )
+
+    # Predicted GHG at median loan, by asset type (others at reference)
+    median_loan = float(df["loan_usd"].median())
+    grid = []
+    for asset in df["asset_type"].cat.categories:
+        row = pd.DataFrame(
+            {
+                "log_loan": [np.log(median_loan)],
+                "asset_type": pd.Categorical([asset], categories=df["asset_type"].cat.categories),
+                "sector": pd.Categorical(["Manufacturing"], categories=df["sector"].cat.categories),
+                "region": pd.Categorical(["Urban"], categories=df["region"].cat.categories),
+                "borrower_size": pd.Categorical(["Small"], categories=df["borrower_size"].cat.categories),
+                "year": pd.Categorical([2023], categories=df["year"].cat.categories),
+            }
+        )
+        pred_log = float(model.predict(row).iloc[0])
+        grid.append(
+            {
+                "asset": asset,
+                "pred_ghg_at_median_loan": fmt(np.exp(pred_log), 1),
+            }
+        )
+
+    # Pareto points for bar: cumulative GHG share at selected ranks
+    pareto_ranks = [1, 5, 10, 20, 50, 100, 214]
+    pareto = []
+    for k in pareto_ranks:
+        pareto.append(
+            {
+                "label": f"{k}" if k < 214 else "214 (all)",
+                "ghg_share": share(ranked.loc[: k - 1, "ghg_tco2_yr"].sum(), total_ghg),
+                "usd_share": share(ranked.loc[: k - 1, "loan_usd"].sum(), total_usd),
+            }
+        )
+
+    payload = {
+        "n": n,
+        "years": [int(y) for y in sorted(df["year"].unique())],
+        "target": TARGET_TCO2,
+        "total_ghg": fmt(total_ghg, 1),
+        "total_usd": fmt(total_usd, 0),
+        "multiple": fmt(total_ghg / TARGET_TCO2, 2),
+        "mean_ghg": fmt(df["ghg_tco2_yr"].mean(), 1),
+        "median_ghg": fmt(df["ghg_tco2_yr"].median(), 1),
+        "p90_ghg": fmt(df["ghg_tco2_yr"].quantile(0.9), 1),
+        "max_ghg": fmt(df["ghg_tco2_yr"].max(), 1),
+        "mean_loan": fmt(df["loan_usd"].mean(), 0),
+        "median_loan": fmt(median_loan, 0),
+        "mean_intensity": fmt(df["intensity"].mean(), 1),
+        "median_intensity": fmt(df["intensity"].median(), 1),
+        "gini_ghg": fmt(gini, 3),
+        "deals_for_50": deals_for(0.50),
+        "deals_for_80": deals_for(0.80),
+        "deals_for_90": deals_for(0.90),
+        "top_shares": top_shares,
+        "lorenz": lorenz,
+        "vol_lorenz": vol_lorenz,
+        "pareto": pareto,
+        "top10": top10,
+        "by_asset": group_table(df, "asset_type", total_ghg, total_usd),
+        "by_sector": group_table(df, "sector", total_ghg, total_usd),
+        "by_region": group_table(df, "region", total_ghg, total_usd),
+        "by_size": group_table(df, "borrower_size", total_ghg, total_usd),
+        "by_year": group_table(df, "year", total_ghg, total_usd),
+        "industrial": {
+            "n": int(len(industrial)),
+            "n_share": share(len(industrial), n),
+            "ghg": fmt(industrial_only, 1),
+            "ghg_share": share(industrial_only, total_ghg),
+            "usd_share": share(float(industrial["loan_usd"].sum()), total_usd),
+            "median_ghg": fmt(industrial["ghg_tco2_yr"].median(), 1),
+            "intensity": fmt(industrial["intensity"].median(), 1),
+        },
+        "solar": {
+            "n": int(len(solar)),
+            "n_share": share(len(solar), n),
+            "ghg": fmt(float(solar["ghg_tco2_yr"].sum()), 1),
+            "ghg_share": share(float(solar["ghg_tco2_yr"].sum()), total_ghg),
+            "usd_share": share(float(solar["loan_usd"].sum()), total_usd),
+        },
+        "counterfactuals": {
+            "without_industrial_ghg": fmt(rest_ghg, 1),
+            "without_industrial_multiple": fmt(rest_ghg / TARGET_TCO2, 2),
+            "without_top10_ghg": fmt(no_top10_ghg, 1),
+            "without_top10_multiple": fmt(no_top10_ghg / TARGET_TCO2, 2),
+            "industrial_plus_solar_share": share(solar_plus_ind, total_ghg),
+            "bottom_half_ghg_share": share(
+                float(ranked.tail(n // 2)["ghg_tco2_yr"].sum()), total_ghg
+            ),
+        },
+        "spec": {
+            "formula": formula,
+            "cov": "HC3",
+            "n": int(model.nobs),
+            "r2": fmt(model.rsquared, 3),
+            "r2_adj": fmt(model.rsquared_adj, 3),
+            "f_p": fmt(model.f_pvalue, 4),
+            "elasticity": fmt(model.params["log_loan"], 3),
+            "elasticity_se": fmt(model.bse["log_loan"], 3),
+            "elasticity_p": fmt(model.pvalues["log_loan"], 4),
+            "elasticity_ci": [
+                fmt(model.conf_int().loc["log_loan"].iloc[0], 3),
+                fmt(model.conf_int().loc["log_loan"].iloc[1], 3),
+            ],
+        },
+        "nested": nested_fit,
+        "anova": anova_rows,
+        "vif_max": max(v["vif"] for v in vif_rows),
+        "vif_high": [v for v in vif_rows if v["vif"] >= 5],
+        "asset_multipliers": asset_mult,
+        "predicted_at_median_loan": grid,
+        "influence": influence_rows,
+        "diagnostics": {
+            "resid_skew": fmt(float(pd.Series(resid).skew()), 3),
+            "jarque_bera_p": fmt(jb[1], 4),
+            "breusch_pagan_p": fmt(bp[1], 4),
+            "corr_fitted_resid": fmt(float(np.corrcoef(fitted, resid)[0, 1]), 3),
+        },
+        "intensity_model": {
+            "r2": fmt(intensity_model.rsquared, 3),
+            "asset_p_industrial": fmt(
+                intensity_model.pvalues["C(asset_type)[T.Industrial process]"], 4
+            ),
+            "industrial_mult": fmt(
+                np.exp(intensity_model.params["C(asset_type)[T.Industrial process]"]), 2
+            ),
+            "solar_mult": fmt(
+                np.exp(intensity_model.params["C(asset_type)[T.Solar PV]"]), 2
+            ),
+        },
+        "other_coefs": coef_table(
+            model,
+            [
+                "C(region)[T.Rural]",
+                "C(borrower_size)[T.Micro]",
+                "C(borrower_size)[T.Medium]",
+                "C(sector)[T.Agribusiness]",
+                "C(sector)[T.Real estate]",
+                "C(sector)[T.Retail & services]",
+                "C(sector)[T.Transport]",
+                "C(year)[T.2022]",
+                "C(year)[T.2023]",
+                "C(year)[T.2024]",
+            ],
+        ),
+        "full_summary": model.summary().as_text(),
+    }
+
+    OUT.write_text(json.dumps(payload, indent=2))
+    print(model.summary())
+    print("\n--- Nested R2 ---")
+    for k, v in nested_fit.items():
+        print(k, v)
+    print("\n--- ANOVA ---")
+    print(anova)
+    print("\n--- Key concentration ---")
+    print("total_ghg", total_ghg, "multiple", total_ghg / TARGET_TCO2)
+    print("deals for 50/80/90", deals_for(0.5), deals_for(0.8), deals_for(0.9))
+    print("gini", gini)
+    print("wrote", OUT)
+
+
+if __name__ == "__main__":
+    main()
+</script>
+<script id="run-src" type="text/plain">                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                log_ghg   R-squared:                       0.960
+Model:                            OLS   Adj. R-squared:                  0.957
+Method:                 Least Squares   F-statistic:                     432.5
+Date:                Thu, 24 Sep 2026   Prob (F-statistic):          6.97e-144
+Time:                        12:03:17   Log-Likelihood:                -19.946
+No. Observations:                 214   AIC:                             73.89
+Df Residuals:                     197   BIC:                             131.1
+Df Model:                          16                                         
+Covariance Type:                  HC3                                         
+========================================================================================================
+                                           coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------
+Intercept                               -7.4468      0.367    -20.278      0.000      -8.167      -6.727
+C(asset_type)[T.Cold chain]             -0.1785      0.073     -2.449      0.014      -0.321      -0.036
+C(asset_type)[T.Fleet renewal]          -0.5016      0.066     -7.545      0.000      -0.632      -0.371
+C(asset_type)[T.EDGE green building]    -0.7871      0.086     -9.120      0.000      -0.956      -0.618
+C(asset_type)[T.Solar PV]                0.6100      0.068      9.025      0.000       0.478       0.743
+C(asset_type)[T.Industrial process]      1.6273      0.086     18.859      0.000       1.458       1.796
+C(sector)[T.Agribusiness]               -0.0280      0.061     -0.460      0.646      -0.147       0.091
+C(sector)[T.Real estate]                -0.0739      0.058     -1.267      0.205      -0.188       0.040
+C(sector)[T.Retail & services]          -0.0361      0.070     -0.514      0.607      -0.174       0.102
+C(sector)[T.Transport]                   0.0274      0.057      0.477      0.634      -0.085       0.140
+C(region)[T.Rural]                       0.0110      0.043      0.256      0.798      -0.073       0.095
+C(borrower_size)[T.Micro]               -0.0940      0.049     -1.927      0.054      -0.190       0.002
+C(borrower_size)[T.Medium]               0.1796      0.048      3.727      0.000       0.085       0.274
+C(year)[T.2022]                          0.1269      0.061      2.069      0.039       0.007       0.247
+C(year)[T.2023]                          0.1094      0.051      2.146      0.032       0.009       0.209
+C(year)[T.2024]                          0.1133      0.062      1.839      0.066      -0.007       0.234
+log_loan                                 0.9767      0.028     34.843      0.000       0.922       1.032
+==============================================================================
+Omnibus:                        1.262   Durbin-Watson:                   1.847
+Prob(Omnibus):                  0.532   Jarque-Bera (JB):                1.171
+Skew:                           0.004   Prob(JB):                        0.557
+Kurtosis:                       2.638   Cond. No.                         268.
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+
+--- Nested R2 ---
+size_only {'r2': 0.723, 'r2_adj': 0.721, 'n': 214, 'aic': 460.3, 'elasticity': 1.1, 'elasticity_se': 0.051, 'elasticity_p': 0.0}
+size_asset {'r2': 0.952, 'r2_adj': 0.951, 'n': 214, 'aic': 95.2, 'elasticity': 0.962, 'elasticity_se': 0.028, 'elasticity_p': 0.0}
+size_asset_sector {'r2': 0.952, 'r2_adj': 0.95, 'n': 214, 'aic': 101.1, 'elasticity': 0.963, 'elasticity_se': 0.031, 'elasticity_p': 0.0}
+full {'r2': 0.96, 'r2_adj': 0.957, 'n': 214, 'aic': 73.9, 'elasticity': 0.977, 'elasticity_se': 0.028, 'elasticity_p': 0.0}
+
+--- ANOVA ---
+                      sum_sq     df            F        PR(>F)
+C(asset_type)     105.554913    5.0   275.471714  7.564746e-87
+C(sector)           0.237268    4.0     0.774012  5.432899e-01
+C(region)           0.005038    1.0     0.065737  7.979159e-01
+C(borrower_size)    2.117004    2.0    13.812119  2.434707e-06
+C(year)             0.487952    3.0     2.122387  9.865669e-02
+log_loan           93.039202    1.0  1214.044306  3.644388e-86
+Residual           15.097244  197.0          NaN           NaN
+
+--- Key concentration ---
+total_ghg 230617.7 multiple 11.266681322976208
+deals for 50/80/90 15 59 95
+gini 0.690685512021009
+wrote /tmp/ba_loan_ghg_analysis.json
+</script>
+<script>
+const codeLines = document.getElementById("code-src").textContent.replace(/\n$/, "").split("\n");
+const runLines = document.getElementById("run-src").textContent.replace(/\n$/, "").split("\n");
+
+const promptParas = [
+  "I am evaluating a bank credit line. The attached file is 214 climate sub-loans made under it between 2021 and 2024: loan amount in USD, the type of asset financed, sector, region, borrower size, and the annual GHG reduction in tonnes of CO2 attributed to each loan.",
+  "At approval the results framework set a target of 20,469 tCO2/yr. The portfolio reported 230,617 tCO2/yr, 11.3 times the target.",
+  "Write and run the analysis that explains where that GHG reduction actually came from. Fit a regression, tell me what drives the outcome, and report how much of the total is concentrated in how few deals. Show me the code, state the specification you chose and why, and tell me what this analysis cannot tell me."
+];
+
+const resultCards = [
+  {
+    cls: "wrong",
+    h: "Naive model",
+    formula: "ghg_tco2_yr ~ loan_usd",
+    figure: "0.441",
+    unit: "R²",
+    text: "“Lend more, get more tonnes” is the wrong lesson. The slope reads as about 1,080 tCO2/yr for each extra US$1 million."
+  },
+  {
+    cls: "",
+    h: "Log-log, with what the money bought",
+    formula: "ln(ghg) ~ ln(loan) + asset_type + borrower_size + region",
+    figure: "0.958",
+    unit: "R²",
+    text: "Elasticity on loan size is 0.97. Loan size is close to neutral. Composition is what moves the outcome."
+  },
+  {
+    cls: "",
+    h: "Tonnes per dollar",
+    formula: "Median GHG per US$1,000 lent",
+    figure: "About 11×",
+    unit: "spread",
+    text: "Industrial process 2.19, down to EDGE green building 0.21. Best to worst is 10.6× across asset types."
+  },
+  {
+    cls: "",
+    h: "Where the tonnes sit",
+    formula: "Industrial process",
+    figure: "16",
+    unit: "loans",
+    text: "16 industrial-process loans, 7% of deals, carry 47% of the GHG."
+  },
+  {
+    cls: "",
+    h: "Against the target",
+    formula: "20,469 tCO2/yr at approval",
+    figure: "11.3×",
+    unit: "the target",
+    text: "The portfolio reported 230,617 tCO2/yr. The 11.3× was deal mix."
+  },
+  {
+    cls: "catch",
+    h: "The catch",
+    formula: "",
+    figure: "",
+    unit: "",
+    text: "Every row is a loan that was made, so there is no counterfactual. No specification can show that the credit line caused the reductions."
+  },
+  {
+    cls: "quiet",
+    h: "The file",
+    formula: "",
+    figure: "",
+    unit: "",
+    text: "This file is synthetic. It was built to match the case totals: 214 sub-loans, US$274.0 million, and 230,617 tCO2/yr."
+  }
+];
+
+const beats = [
+  { id: "prompt", kicker: "1 of 4", heading: "The problem", deck: "The credit-line mandate.", count: promptParas.length, delay: 1500 },
+  { id: "code", kicker: "2 of 4", heading: "The code", deck: "analyze_climate_subloans.py, written out from the file in this folder.", count: codeLines.length, delay: 42 },
+  { id: "run", kicker: "3 of 4", heading: "The run", deck: "Output from python3 analyze_climate_subloans.py on 24 September 2026.", count: runLines.length + 1, delay: 70 },
+  { id: "results", kicker: "4 of 4", heading: "The results", deck: "Fitted on this CSV. The terminal is the script’s full model, which also includes sector and year (R² 0.960). Below: the naive levels fit, then log-log with asset type, borrower size, and region.", count: resultCards.length, delay: 1600 }
+];
+
+const views = {
+  prompt: document.getElementById("view-prompt"),
+  code: document.getElementById("view-code"),
+  run: document.getElementById("view-run"),
+  results: document.getElementById("view-results")
+};
+const stage = document.getElementById("stage");
+let beat = 0;
+let step = -1;
+let playing = false;
+let timer = null;
+let codeScroll = null;
+let runScroll = null;
+let caret = null;
+
+function esc(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function highlight(raw) {
+  if (raw.trim().startsWith("#")) return '<span class="cm">' + esc(raw) + "</span>";
+  let comment = "";
+  let body = raw;
+  const cut = raw.indexOf(" #");
+  if (cut >= 0 && raw.slice(0, cut).indexOf('"') === -1 && raw.slice(0, cut).indexOf("'") === -1) {
+    comment = raw.slice(cut);
+    body = raw.slice(0, cut);
+  }
+  const parts = body.split(/("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')/);
+  const kw = /\b(def|class|return|import|from|as|if|else|elif|for|in|not|and|or|None|True|False|lambda|with|yield|try|except|raise|assert|while|pass)\b/g;
+  let html = "";
+  for (let i = 0; i < parts.length; i++) {
+    if (i % 2 === 1) html += '<span class="st">' + esc(parts[i]) + "</span>";
+    else html += esc(parts[i]).replace(kw, '<span class="kw">$1</span>');
+  }
+  if (comment) html += '<span class="cm">' + esc(comment) + "</span>";
+  return html || " ";
+}
+
+function setStatus() {
+  const el = document.getElementById("status");
+  const atEnd = beat === beats.length - 1 && step === beats[beat].count - 1;
+  el.textContent = playing ? "Playing" : atEnd ? "Ended" : "Paused";
+}
+function setPills() {
+  document.querySelectorAll(".beat").forEach(function (el) {
+    const i = Number(el.dataset.beat);
+    el.classList.toggle("now", i === beat);
+    el.classList.toggle("done", i < beat);
+  });
+}
+function setProgress() {
+  const b = beats[beat];
+  const n = Math.max(step + 1, 0);
+  let label = b.heading + " · " + n + " / " + b.count;
+  if (b.id === "code" && step >= 0) label = "Line " + (step + 1) + " of " + b.count;
+  if (b.id === "run" && step >= 0) label = "Run · " + n + " / " + b.count;
+  document.getElementById("progress").textContent = label;
+}
+function showOnly(id) {
+  Object.keys(views).forEach(function (key) {
+    views[key].hidden = key !== id;
+  });
+}
+function prepareBeat() {
+  const b = beats[beat];
+  document.getElementById("kicker").textContent = b.kicker;
+  document.getElementById("heading").textContent = b.heading;
+  document.getElementById("deck").textContent = b.deck;
+  showOnly(b.id);
+  views[b.id].replaceChildren();
+  codeScroll = null;
+  runScroll = null;
+  caret = null;
+  if (b.id === "code") {
+    const editor = document.createElement("div");
+    editor.className = "editor";
+    editor.innerHTML = '<div class="tab"><strong>analyze_climate_subloans.py</strong></div>';
+    codeScroll = document.createElement("pre");
+    codeScroll.className = "pad";
+    editor.appendChild(codeScroll);
+    views.code.appendChild(editor);
+  }
+  if (b.id === "run") {
+    const term = document.createElement("div");
+    term.className = "terminal";
+    term.innerHTML = '<div class="tab"><strong>Terminal</strong> · python3 analyze_climate_subloans.py</div>';
+    runScroll = document.createElement("pre");
+    runScroll.className = "pad";
+    term.appendChild(runScroll);
+    views.run.appendChild(term);
+  }
+  if (b.id === "results") {
+    const stack = document.createElement("div");
+    stack.className = "cards";
+    stack.id = "cards";
+    views.results.appendChild(stack);
+  }
+  setPills();
+  stage.scrollTop = 0;
+}
+function dropCaret() {
+  if (caret && caret.parentNode) caret.parentNode.removeChild(caret);
+  caret = null;
+}
+function appendStep() {
+  const b = beats[beat];
+  if (b.id === "prompt") {
+    const p = document.createElement("p");
+    p.textContent = promptParas[step];
+    views.prompt.appendChild(p);
+    p.scrollIntoView({ block: "nearest" });
+  }
+  if (b.id === "code") {
+    dropCaret();
+    const row = document.createElement("div");
+    row.className = "row";
+    const ln = document.createElement("span");
+    ln.className = "ln";
+    ln.textContent = String(step + 1);
+    const src = document.createElement("span");
+    src.className = "src";
+    src.innerHTML = highlight(codeLines[step]);
+    caret = document.createElement("span");
+    caret.className = "caret";
+    caret.setAttribute("aria-hidden", "true");
+    src.appendChild(caret);
+    row.appendChild(ln);
+    row.appendChild(src);
+    codeScroll.appendChild(row);
+    codeScroll.scrollTop = codeScroll.scrollHeight;
+  }
+  if (b.id === "run") {
+    const line = document.createElement("div");
+    line.className = "src";
+    if (step === 0) {
+      line.classList.add("cmd");
+      line.textContent = "$ python3 analyze_climate_subloans.py";
+    } else {
+      line.textContent = runLines[step - 1].length ? runLines[step - 1] : " ";
+    }
+    runScroll.appendChild(line);
+    runScroll.scrollTop = runScroll.scrollHeight;
+  }
+  if (b.id === "results") {
+    const card = resultCards[step];
+    const art = document.createElement("article");
+    art.className = "card" + (card.cls ? " " + card.cls : "");
+    art.dataset.card = card.h;
+    const h = document.createElement("h3");
+    h.textContent = card.h;
+    art.appendChild(h);
+    if (card.formula) {
+      const f = document.createElement("p");
+      f.className = "formula";
+      f.textContent = card.formula;
+      art.appendChild(f);
+    }
+    if (card.figure) {
+      const fig = document.createElement("p");
+      fig.className = "figure";
+      fig.appendChild(document.createTextNode(card.figure));
+      const unit = document.createElement("span");
+      unit.textContent = card.unit;
+      fig.appendChild(unit);
+      art.appendChild(fig);
+    }
+    const p = document.createElement("p");
+    p.textContent = card.text;
+    art.appendChild(p);
+    document.getElementById("cards").appendChild(art);
+    art.scrollIntoView({ block: "nearest" });
+  }
+  setProgress();
+}
+function atEnd() {
+  return beat === beats.length - 1 && step >= beats[beat].count - 1;
+}
+function advance() {
+  if (step + 1 < beats[beat].count) {
+    const first = step === -1;
+    step += 1;
+    if (first) prepareBeat();
+    appendStep();
+    return true;
+  }
+  if (beat + 1 < beats.length) {
+    beat += 1;
+    step = 0;
+    prepareBeat();
+    appendStep();
+    return true;
+  }
+  return false;
+}
+function delayFor() {
+  if (beats[beat].id === "code") {
+    if (step < 24) return 200;
+    const line = codeLines[step] || "";
+    if (line.includes("log_ghg ~") || line.includes("formula =")) return 420;
+    return 32;
+  }
+  return beats[beat].delay;
+}
+function stop() {
+  playing = false;
+  clearTimeout(timer);
+  timer = null;
+  setStatus();
+}
+function tick() {
+  if (!playing) return;
+  if (!advance()) {
+    stop();
+    return;
+  }
+  setStatus();
+  timer = setTimeout(tick, delayFor());
+}
+function play() {
+  if (atEnd()) reset(false);
+  if (playing) return;
+  playing = true;
+  setStatus();
+  if (!advance()) {
+    stop();
+    return;
+  }
+  timer = setTimeout(tick, delayFor());
+}
+function pause() { stop(); }
+function stepOnce() {
+  stop();
+  if (atEnd()) return;
+  advance();
+  setStatus();
+}
+function reset(render) {
+  stop();
+  beat = 0;
+  step = -1;
+  prepareBeat();
+  document.getElementById("deck").textContent = "Press Play. The credit-line mandate comes first.";
+  setProgress();
+  setStatus();
+  if (render) showOnly("prompt");
+}
+document.getElementById("play").addEventListener("click", play);
+document.getElementById("pause").addEventListener("click", pause);
+document.getElementById("step").addEventListener("click", stepOnce);
+document.addEventListener("keydown", function (ev) {
+  const tag = document.activeElement && document.activeElement.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA") return;
+  if (ev.code === "Space") {
+    ev.preventDefault();
+    if (playing) pause();
+    else play();
+  } else if (ev.code === "ArrowRight") {
+    ev.preventDefault();
+    stepOnce();
+  }
+});
+prepareBeat();
+document.getElementById("deck").textContent = "Press Play. The credit-line mandate comes first.";
+setProgress();
+setStatus();
+</script>
+</body>
+</html>

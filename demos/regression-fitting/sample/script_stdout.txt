@@ -1,0 +1,62 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                log_ghg   R-squared:                       0.960
+Model:                            OLS   Adj. R-squared:                  0.957
+Method:                 Least Squares   F-statistic:                     432.5
+Date:                Thu, 24 Sep 2026   Prob (F-statistic):          6.97e-144
+Time:                        12:03:17   Log-Likelihood:                -19.946
+No. Observations:                 214   AIC:                             73.89
+Df Residuals:                     197   BIC:                             131.1
+Df Model:                          16                                         
+Covariance Type:                  HC3                                         
+========================================================================================================
+                                           coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------------------
+Intercept                               -7.4468      0.367    -20.278      0.000      -8.167      -6.727
+C(asset_type)[T.Cold chain]             -0.1785      0.073     -2.449      0.014      -0.321      -0.036
+C(asset_type)[T.Fleet renewal]          -0.5016      0.066     -7.545      0.000      -0.632      -0.371
+C(asset_type)[T.EDGE green building]    -0.7871      0.086     -9.120      0.000      -0.956      -0.618
+C(asset_type)[T.Solar PV]                0.6100      0.068      9.025      0.000       0.478       0.743
+C(asset_type)[T.Industrial process]      1.6273      0.086     18.859      0.000       1.458       1.796
+C(sector)[T.Agribusiness]               -0.0280      0.061     -0.460      0.646      -0.147       0.091
+C(sector)[T.Real estate]                -0.0739      0.058     -1.267      0.205      -0.188       0.040
+C(sector)[T.Retail & services]          -0.0361      0.070     -0.514      0.607      -0.174       0.102
+C(sector)[T.Transport]                   0.0274      0.057      0.477      0.634      -0.085       0.140
+C(region)[T.Rural]                       0.0110      0.043      0.256      0.798      -0.073       0.095
+C(borrower_size)[T.Micro]               -0.0940      0.049     -1.927      0.054      -0.190       0.002
+C(borrower_size)[T.Medium]               0.1796      0.048      3.727      0.000       0.085       0.274
+C(year)[T.2022]                          0.1269      0.061      2.069      0.039       0.007       0.247
+C(year)[T.2023]                          0.1094      0.051      2.146      0.032       0.009       0.209
+C(year)[T.2024]                          0.1133      0.062      1.839      0.066      -0.007       0.234
+log_loan                                 0.9767      0.028     34.843      0.000       0.922       1.032
+==============================================================================
+Omnibus:                        1.262   Durbin-Watson:                   1.847
+Prob(Omnibus):                  0.532   Jarque-Bera (JB):                1.171
+Skew:                           0.004   Prob(JB):                        0.557
+Kurtosis:                       2.638   Cond. No.                         268.
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+
+--- Nested R2 ---
+size_only {'r2': 0.723, 'r2_adj': 0.721, 'n': 214, 'aic': 460.3, 'elasticity': 1.1, 'elasticity_se': 0.051, 'elasticity_p': 0.0}
+size_asset {'r2': 0.952, 'r2_adj': 0.951, 'n': 214, 'aic': 95.2, 'elasticity': 0.962, 'elasticity_se': 0.028, 'elasticity_p': 0.0}
+size_asset_sector {'r2': 0.952, 'r2_adj': 0.95, 'n': 214, 'aic': 101.1, 'elasticity': 0.963, 'elasticity_se': 0.031, 'elasticity_p': 0.0}
+full {'r2': 0.96, 'r2_adj': 0.957, 'n': 214, 'aic': 73.9, 'elasticity': 0.977, 'elasticity_se': 0.028, 'elasticity_p': 0.0}
+
+--- ANOVA ---
+                      sum_sq     df            F        PR(>F)
+C(asset_type)     105.554913    5.0   275.471714  7.564746e-87
+C(sector)           0.237268    4.0     0.774012  5.432899e-01
+C(region)           0.005038    1.0     0.065737  7.979159e-01
+C(borrower_size)    2.117004    2.0    13.812119  2.434707e-06
+C(year)             0.487952    3.0     2.122387  9.865669e-02
+log_loan           93.039202    1.0  1214.044306  3.644388e-86
+Residual           15.097244  197.0          NaN           NaN
+
+--- Key concentration ---
+total_ghg 230617.7 multiple 11.266681322976208
+deals for 50/80/90 15 59 95
+gini 0.690685512021009
+wrote /tmp/ba_loan_ghg_analysis.json

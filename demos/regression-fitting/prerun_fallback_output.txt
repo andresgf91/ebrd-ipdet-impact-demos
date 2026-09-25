@@ -1,0 +1,38 @@
+PRE-RUN FALLBACK  |  BA Loan climate sub-loans  |  n = 214, US$274.0m, 230,617 tCO2/yr
+
+MODEL 1  (what you get if you ask the obvious question)
+  ghg_tco2_yr ~ loan_usd
+  R2 = 0.441      slope = 0.00108      p = 1.4e-28
+  Reads as: "every extra US$1m lent buys about 1,080 tCO2/yr"
+
+MODEL 2  (add the deal characteristics)
+  ghg_tco2_yr ~ loan_usd + asset_type + borrower_size + region + year
+  R2 = 0.811
+
+MODEL 3  (log-log, the specification that actually fits)
+  ln(ghg) ~ ln(loan) + asset_type + borrower_size + region
+  R2 = 0.958      elasticity on loan size = 0.97
+
+  asset_type effect, relative to Cold chain:
+    Industrial process    x6.2
+    Solar PV              x2.2
+    Efficient boiler      x1.2
+    Fleet renewal         x0.7
+    EDGE green building   x0.6
+
+GHG AVOIDED PER US$1,000 LENT  (median)
+  Industrial process    2.19
+  Solar PV              0.86
+  Efficient boiler      0.47
+  Cold chain            0.39
+  Fleet renewal         0.28
+  EDGE green building   0.21
+  spread, best to worst = 10.6x
+
+THE FINDING
+  16 industrial-process loans = 7% of deals, 17% of volume, 47% of the GHG.
+  Loan size is close to neutral (elasticity 0.97). Composition is everything.
+  Target 20,469 t; achieved 230,617 t = 11.3x.
+  Same US$274m lent entirely against green buildings = 56,844 t = 2.8x target.
+
+  The 11.3x was not performance. It was deal mix, and nobody forecast the mix.

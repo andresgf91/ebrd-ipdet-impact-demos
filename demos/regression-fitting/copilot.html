@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copilot result — climate credit line</title>
+<style>
+  :root {
+    --bg: #f3f0e8;
+    --paper: #fffdf8;
+    --ink: #1c1915;
+    --muted: #5e584e;
+    --line: #e3dcd0;
+    --green: #0e6b50;
+    --green-soft: #e5f3ed;
+    --rust: #8c3d2a;
+    --rust-soft: #f8ebe6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  }
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 28px 22px 64px;
+  }
+  header { margin-bottom: 22px; }
+  .topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .eyebrow {
+    margin: 0;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    margin: 4px 0 0;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .page-link {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--green);
+  }
+  .lede {
+    margin: 12px 0 0;
+    font-size: 18px;
+    line-height: 1.45;
+    color: var(--muted);
+    max-width: 68ch;
+  }
+  h2 {
+    margin: 28px 0 10px;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  p { margin: 0 0 12px; font-size: 18px; line-height: 1.45; }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .step {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 14px 16px;
+  }
+  .step .n {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin: 0 0 6px;
+  }
+  .step h3 { margin: 0 0 8px; font-size: 18px; }
+  .step p { margin: 0; font-size: 15px; color: var(--muted); }
+  .formula {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 15px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 0 0 12px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+  }
+  th, td {
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: 0; }
+  th {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    background: #f6f3ec;
+  }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.kept td { background: var(--green-soft); }
+  .limit {
+    background: var(--rust-soft);
+    border: 1px solid #efd5cc;
+    border-left: 4px solid var(--rust);
+    border-radius: 12px;
+    padding: 14px 16px 4px;
+  }
+  ul { margin: 0 0 12px; padding-left: 1.2em; }
+  li { margin: 0 0 6px; font-size: 18px; line-height: 1.4; }
+  @media (max-width: 720px) {
+    h1 { font-size: 26px; }
+    .steps { grid-template-columns: 1fr; }
+    p, li { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">IPDET Impact · Copilot live result</p>
+    <div class="topline">
+      <h1>What Copilot reported</h1>
+      <a class="page-link" href="index.html">Recorded walkthrough</a>
+    </div>
+    <p class="lede">Copilot wrote <code>analyze_climate_subloans.py</code>, ran it on all 214 loans in <code>ba_loan_climate_subloans</code>, then explained the result. The figures below are that explanation.</p>
+  </header>
+
+  <h2>The three steps</h2>
+  <div class="steps">
+    <article class="step">
+      <p class="n">Step 1 of 3</p>
+      <h3>Write the file</h3>
+      <p>Create <code>analyze_climate_subloans.py</code>, with the model selection, diagnostics, concentration analysis, and causal limitation stated in the script itself.</p>
+    </article>
+    <article class="step">
+      <p class="n">Step 2 of 3</p>
+      <h3>Run the file</h3>
+      <p>The script has been written as <code>analyze_climate_subloans.py</code>. Execute that exact file against the attached <code>ba_loan_climate_subloans</code>.</p>
+    </article>
+    <article class="step">
+      <p class="n">Step 3 of 3</p>
+      <h3>Interpretation</h3>
+      <p>It analyzes all 214 observations in <code>ba_loan_climate_subloans</code>.</p>
+    </article>
+  </div>
+
+  <h2>Where the tonnes came from</h2>
+  <p>The portfolio’s 230,617.7 tCO₂/year is not broadly distributed across 214 similar-performing loans. It comes disproportionately from industrial-process investments, despite there being only 16 of them; from Solar PV investments, which are more numerous; and from a relatively small group of very high-reduction transactions, particularly large industrial-process deals. Together, industrial process and Solar PV account for 84.1% of all attributed reductions.</p>
+
+  <h2>What the naive regression says</h2>
+  <p class="formula">GHG reduction = α + β × loan amount</p>
+  <ul>
+    <li>Approximately 1,080 additional tCO₂/year per additional USD 1 million lent.</li>
+    <li>R² = 0.441.</li>
+    <li>A statistically significant loan-amount coefficient.</li>
+    <li>Strong evidence of heteroskedasticity, with a Breusch-Pagan p-value below 0.001.</li>
+  </ul>
+  <p>Larger loans tend to report larger reductions, but loan amount alone explains only about 44% of the variation. It treats a dollar spent on an industrial process as equivalent to a dollar spent on a green building, vehicle fleet, boiler, or solar installation. The data show that this is not a credible simplification.</p>
+
+  <h2>Preferred specification</h2>
+  <p class="formula">log(GHG reduction) = α + β × log(loan amount) + asset-type fixed effects + borrower-size fixed effects</p>
+  <p>Selected using 10-fold cross-validated prediction error. Asset type was included in every candidate because the analysis needs to distinguish what the financing purchased. Borrower size and region were then allowed to earn their place by improving out-of-sample performance. Borrower size improved the model. Region did not, and was excluded.</p>
+  <table>
+    <thead>
+      <tr><th>Candidate</th><th class="num">Log-scale RMSE</th></tr>
+    </thead>
+    <tbody>
+      <tr class="kept"><td>Loan size + asset type + borrower size</td><td class="num">0.2846</td></tr>
+      <tr><td>Loan size + asset type + borrower size + region</td><td class="num">0.2859</td></tr>
+      <tr><td>Loan size + asset type</td><td class="num">0.3024</td></tr>
+      <tr><td>Loan size + asset type + region</td><td class="num">0.3044</td></tr>
+    </tbody>
+  </table>
+  <p>Preferred model adjusted R² 0.957 on the log scale. Loan-size elasticity 0.972, robust 95% CI 0.921 to 1.023. A 10% larger loan is associated with approximately a 9.7% larger attributed annual GHG reduction, holding asset type and borrower size constant. Scale matters. What the loan financed matters even more for explaining why similarly sized loans produce very different reported reductions.</p>
+
+  <h2>Multipliers</h2>
+  <p>Holding loan amount and borrower size constant, GHG multipliers relative to cold-chain investments. These are conditional associations, not causal effects.</p>
+  <table>
+    <thead>
+      <tr><th>Asset type</th><th class="num">Multiplier vs cold chain</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Industrial process</td><td class="num">6.18×</td></tr>
+      <tr><td>Solar PV</td><td class="num">2.24×</td></tr>
+      <tr><td>Efficient boiler</td><td class="num">1.22×</td></tr>
+      <tr><td>Cold chain</td><td class="num">1.00×</td></tr>
+      <tr><td>Fleet renewal</td><td class="num">0.72×</td></tr>
+      <tr><td>EDGE green building</td><td class="num">0.55×</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Contribution</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Asset type</th>
+        <th class="num">Deals</th>
+        <th class="num">tCO₂/yr</th>
+        <th class="num">Share</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Industrial process</td><td class="num">16</td><td class="num">108,303.3</td><td class="num">47.0%</td></tr>
+      <tr><td>Solar PV</td><td class="num">68</td><td class="num">85,529.4</td><td class="num">37.1%</td></tr>
+      <tr><td>EDGE green building</td><td class="num">32</td><td class="num">17,718.3</td><td class="num">7.7%</td></tr>
+      <tr><td>Efficient boiler</td><td class="num">44</td><td class="num">10,523.5</td><td class="num">4.6%</td></tr>
+      <tr><td>Cold chain</td><td class="num">29</td><td class="num">5,216.8</td><td class="num">2.3%</td></tr>
+      <tr><td>Fleet renewal</td><td class="num">25</td><td class="num">3,326.4</td><td class="num">1.4%</td></tr>
+    </tbody>
+  </table>
+  <p>16 industrial-process loans, only 7.5% of all loans, generated 47.0% of the reported total.</p>
+
+  <h2>How concentrated is the reported result?</h2>
+  <ul>
+    <li>1 deal accounts for 8.5% of the total.</li>
+    <li>5 deals account for 25.9%.</li>
+    <li>10 deals account for 40.5%.</li>
+    <li>15 deals, just 7.0% of the portfolio, account for 50.2%.</li>
+    <li>20 deals account for 57.2%.</li>
+    <li>47 deals, or 22.0%, account for 75.2%.</li>
+    <li>59 deals, or 27.6%, account for 80.4%.</li>
+    <li>95 deals, or 44.4%, account for 90.1%.</li>
+  </ul>
+  <p>Nine of the ten highest-reduction loans are industrial-process investments. The largest single deal reports 19,524.8 tCO₂/year, almost as much as the entire 20,469 tCO₂/year approval target.</p>
+  <p>The reported achievement of 11.27 times the target appears to be driven by a portfolio large enough to finance substantial assets, a near-proportional relationship between financing size and attributed reductions, a highly carbon-productive industrial-process segment, a large Solar PV segment, and strong concentration in a small number of exceptionally high-reduction transactions. The headline result is real as an arithmetic aggregation of the reported loan-level estimates, but it should not be interpreted as evidence that the typical sub-loan dramatically exceeded expectations. The aggregate overachievement depends heavily on a small tail of large, high-reduction projects.</p>
+
+  <h2>What this analysis cannot tell us</h2>
+  <div class="limit">
+    <p>No specification in this file can show that the credit line caused the GHG reductions.</p>
+    <p>Every observation is a loan that was made. There is no comparison group of otherwise similar firms or projects that did not receive the credit line, and no credible counterfactual showing what emissions would have been without financing.</p>
+    <p>The regressions identify associations within the financed portfolio, not causal impacts. They cannot establish whether the investments would have happened without the credit line; whether the credit line accelerated, enlarged, or improved the investments; whether reported reductions were measured consistently across asset types; whether baseline and emissions-factor assumptions were accurate; whether reductions persisted after reporting; whether rebound, displacement, leakage, or double counting occurred; whether borrower or bank selection explains part of the relationship; or whether the unusually high-reduction loans are representative or replicable.</p>
+    <p>A causal assessment would require a defensible counterfactual design, such as comparisons with eligible non-borrowers, rejected or pipeline projects, matched firms, phased eligibility, or another source of plausibly exogenous variation in access to the credit line.</p>
+  </div>
+</div>
+</body>
+</html>
